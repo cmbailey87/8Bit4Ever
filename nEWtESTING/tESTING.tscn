@@ -1,0 +1,67 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://nEWtESTING/tESTING.gd" type="Script" id=1]
+[ext_resource path="res://Runner man 2 idle.png" type="Texture" id=2]
+[ext_resource path="res://runnerman actions/runnerman003.png" type="Texture" id=3]
+[ext_resource path="res://runnerman actions/runnerman004.png" type="Texture" id=4]
+[ext_resource path="res://runnerman actions/runnerman005.png" type="Texture" id=5]
+[ext_resource path="res://runnerman actions/runnerman006.png" type="Texture" id=6]
+[ext_resource path="res://runnerman actions/runnerman007.png" type="Texture" id=7]
+[ext_resource path="res://runnerman actions/runnerman008.png" type="Texture" id=8]
+[ext_resource path="res://runnerman actions/runnerman010.png" type="Texture" id=9]
+[ext_resource path="res://runnerman actions/runnerman011.png" type="Texture" id=10]
+[ext_resource path="res://runnerman actions/runnerman012.png" type="Texture" id=11]
+[ext_resource path="res://runnerman actions/runnerman013.png" type="Texture" id=12]
+[ext_resource path="res://runnerman actions/runnerman014.png" type="Texture" id=13]
+[ext_resource path="res://runnerman actions/runnerman015.png" type="Texture" id=14]
+[ext_resource path="res://runnerman actions/runnerman016.png" type="Texture" id=15]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "run",
+"speed": 20.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 13.9509, 14.067 )
+
+[node name="Player" type="Area2D"]
+
+position = Vector2( 159.44, 94.4053 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+speed = 100
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
+
+position = Vector2( 0, -0.174828 )
+frames = SubResource( 1 )
+animation = "run"
+frame = 13
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+
+position = Vector2( 0, 2 )
+shape = SubResource( 2 )
+_sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
+
+

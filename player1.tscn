@@ -1,0 +1,74 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://player.gd" type="Script" id=1]
+[ext_resource path="res://Runner man 2 idle.png" type="Texture" id=2]
+[ext_resource path="res://runnerman actions/runnerman005.png" type="Texture" id=3]
+[ext_resource path="res://runnerman actions/runnerman012.png" type="Texture" id=4]
+[ext_resource path="res://runnerman actions/runnerman003.png" type="Texture" id=5]
+[ext_resource path="res://runnerman actions/runnerman004.png" type="Texture" id=6]
+[ext_resource path="res://runnerman actions/runnerman006.png" type="Texture" id=7]
+[ext_resource path="res://runnerman actions/runnerman007.png" type="Texture" id=8]
+[ext_resource path="res://runnerman actions/runnerman008.png" type="Texture" id=9]
+[ext_resource path="res://runnerman actions/runnerman010.png" type="Texture" id=10]
+[ext_resource path="res://runnerman actions/runnerman011.png" type="Texture" id=11]
+[ext_resource path="res://runnerman actions/runnerman013.png" type="Texture" id=12]
+[ext_resource path="res://runnerman actions/runnerman014.png" type="Texture" id=13]
+[ext_resource path="res://runnerman actions/runnerman015.png" type="Texture" id=14]
+[ext_resource path="res://runnerman actions/runnerman016.png" type="Texture" id=15]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": false,
+"name": "idle",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": false,
+"name": "jump",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": false,
+"name": "fall",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 3 ), ExtResource( 3 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 4 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "run",
+"speed": 16.0
+} ]
+_sections_unfolded = [ "Resource" ]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 12.9486, 13.9427 )
+
+[node name="player" type="KinematicBody2D"]
+
+position = Vector2( 168.797, 64.1683 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "Material", "Visibility", "collision" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
+
+frames = SubResource( 1 )
+animation = "run"
+frame = 2
+_sections_unfolded = [ "Material", "Pause", "Transform", "Visibility", "Z Index" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+
+position = Vector2( -2, 1 )
+shape = SubResource( 2 )
+
+
