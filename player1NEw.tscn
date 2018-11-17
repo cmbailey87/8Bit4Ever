@@ -1,32 +1,38 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
-[ext_resource path="res://Dood/DoodJump002.png" type="Texture" id=2]
-[ext_resource path="res://Dood/DoodJump001.png" type="Texture" id=3]
-[ext_resource path="res://Dood/DoodFall001.png" type="Texture" id=4]
+[ext_resource path="res://Dood/DoodIdle001.png" type="Texture" id=2]
+[ext_resource path="res://Dood/DoodIdle002.png" type="Texture" id=3]
+[ext_resource path="res://Dood/DoodJump001.png" type="Texture" id=4]
 [ext_resource path="res://Dood/DoodFall002.png" type="Texture" id=5]
-[ext_resource path="res://Dood/DoodRun001.png" type="Texture" id=6]
-[ext_resource path="res://Dood/DoodRun002.png" type="Texture" id=7]
-[ext_resource path="res://Dood/DoodRun003.png" type="Texture" id=8]
-[ext_resource path="res://Dood/DoodRun004.png" type="Texture" id=9]
+[ext_resource path="res://Dood/DoodFall001.png" type="Texture" id=6]
+[ext_resource path="res://Dood/DoodRun001.png" type="Texture" id=7]
+[ext_resource path="res://Dood/DoodRun002.png" type="Texture" id=8]
+[ext_resource path="res://Dood/DoodRun003.png" type="Texture" id=9]
+[ext_resource path="res://Dood/DoodRun004.png" type="Texture" id=10]
 
 [sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
 "loop": true,
-"name": "jump",
+"name": "idle",
 "speed": 3.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "jump",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "fall",
 "speed": 3.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "run",
-"speed": 12.0
+"speed": 18.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -36,7 +42,6 @@ extents = Vector2( 6.99454, 8.03402 )
 
 [node name="player" type="KinematicBody2D"]
 
-editor/display_folded = true
 position = Vector2( 152.203, 68.2834 )
 input_pickable = false
 collision_layer = 1
@@ -51,8 +56,8 @@ __meta__ = {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 
 frames = SubResource( 1 )
-animation = "jump"
-frame = 1
+animation = "idle"
+playing = true
 _sections_unfolded = [ "Material", "Pause", "Transform", "Visibility", "Z Index" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]

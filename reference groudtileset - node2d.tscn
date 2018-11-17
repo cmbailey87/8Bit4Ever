@@ -11,32 +11,7 @@ extents = Vector2( 8, 8 )
 
 _sections_unfolded = [ "Material", "Pause", "Transform", "Visibility", "Z Index" ]
 
-[node name="ground00" type="Sprite" parent="." index="0"]
-
-position = Vector2( 24.1113, 21.7052 )
-texture = ExtResource( 1 )
-region_enabled = true
-region_rect = Rect2( 131, 2, 10, 7 )
-_sections_unfolded = [ "Animation", "Offset", "Region" ]
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="StaticBody2D" type="StaticBody2D" parent="ground00" index="0"]
-
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ground00/StaticBody2D" index="0"]
-
-shape = SubResource( 1 )
-
-[node name="ground01" type="Sprite" parent="." index="1"]
+[node name="ground01" type="Sprite" parent="." index="0"]
 
 editor/display_folded = true
 position = Vector2( 45.2259, 21.7052 )
@@ -62,7 +37,7 @@ bounce = 0.0
 
 shape = SubResource( 1 )
 
-[node name="ground02" type="Sprite" parent="." index="2"]
+[node name="ground02" type="Sprite" parent="." index="1"]
 
 editor/display_folded = true
 position = Vector2( 67.309, 21.124 )
@@ -88,7 +63,7 @@ bounce = 0.0
 
 shape = SubResource( 1 )
 
-[node name="ground03" type="Sprite" parent="." index="3"]
+[node name="ground03" type="Sprite" parent="." index="2"]
 
 editor/display_folded = true
 position = Vector2( 23.7777, 39.131 )
@@ -114,7 +89,7 @@ bounce = 0.0
 
 shape = SubResource( 1 )
 
-[node name="ground04" type="Sprite" parent="." index="4"]
+[node name="ground04" type="Sprite" parent="." index="3"]
 
 editor/display_folded = true
 position = Vector2( 44.9314, 39.3058 )
@@ -140,7 +115,7 @@ bounce = 0.0
 
 shape = SubResource( 1 )
 
-[node name="ground05" type="Sprite" parent="." index="5"]
+[node name="ground05" type="Sprite" parent="." index="4"]
 
 editor/display_folded = true
 position = Vector2( 66.9593, 39.1121 )
@@ -166,7 +141,7 @@ bounce = 0.0
 
 shape = SubResource( 1 )
 
-[node name="ground06" type="Sprite" parent="." index="6"]
+[node name="ground06" type="Sprite" parent="." index="5"]
 
 editor/display_folded = true
 position = Vector2( 24.0624, 57.2152 )
@@ -192,7 +167,7 @@ bounce = 0.0
 
 shape = SubResource( 1 )
 
-[node name="ground07" type="Sprite" parent="." index="7"]
+[node name="ground07" type="Sprite" parent="." index="6"]
 
 editor/display_folded = true
 position = Vector2( 45.2162, 57.3901 )
@@ -218,7 +193,7 @@ bounce = 0.0
 
 shape = SubResource( 1 )
 
-[node name="ground08" type="Sprite" parent="." index="8"]
+[node name="ground08" type="Sprite" parent="." index="7"]
 
 editor/display_folded = true
 position = Vector2( 66.8469, 57.1964 )
@@ -244,7 +219,7 @@ bounce = 0.0
 
 shape = SubResource( 1 )
 
-[node name="ground09" type="Sprite" parent="." index="9"]
+[node name="ground09" type="Sprite" parent="." index="8"]
 
 editor/display_folded = true
 position = Vector2( 23.9201, 75.1571 )
@@ -270,7 +245,7 @@ bounce = 0.0
 
 shape = SubResource( 1 )
 
-[node name="ground10" type="Sprite" parent="." index="10"]
+[node name="ground10" type="Sprite" parent="." index="9"]
 
 editor/display_folded = true
 position = Vector2( 45.4563, 75.5206 )
@@ -296,7 +271,7 @@ bounce = 0.0
 
 shape = SubResource( 1 )
 
-[node name="ground11" type="Sprite" parent="." index="11"]
+[node name="ground11" type="Sprite" parent="." index="10"]
 
 editor/display_folded = true
 position = Vector2( 67.3692, 75.6071 )
@@ -322,7 +297,7 @@ bounce = 0.0
 
 shape = SubResource( 1 )
 
-[node name="ground12" type="Sprite" parent="." index="12"]
+[node name="ground12" type="Sprite" parent="." index="11"]
 
 editor/display_folded = true
 position = Vector2( 25.017, 94.7918 )
@@ -348,7 +323,7 @@ bounce = 0.0
 
 shape = SubResource( 1 )
 
-[node name="ground13" type="Sprite" parent="." index="13"]
+[node name="ground13" type="Sprite" parent="." index="12"]
 
 editor/display_folded = true
 position = Vector2( 45.4563, 94.7918 )
@@ -371,6 +346,57 @@ friction = 1.0
 bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ground13/StaticBody2D" index="0"]
+
+shape = SubResource( 1 )
+
+[node name="ground14" type="Sprite" parent="." index="13"]
+
+editor/display_folded = true
+position = Vector2( 23.9543, 20.9877 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 112, 0, 16, 16 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="ground14" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ground14/StaticBody2D" index="0"]
+
+shape = SubResource( 1 )
+
+[node name="box01" type="Sprite" parent="." index="14"]
+
+position = Vector2( 67.5348, 94.6225 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 128, 64, 16, 16 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="box01" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="box01/StaticBody2D" index="0"]
 
 shape = SubResource( 1 )
 
