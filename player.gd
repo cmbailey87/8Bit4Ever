@@ -1,8 +1,10 @@
 extends KinematicBody2D
 
-#constant cant be change, 60 pixels per second
+#constant cant be change, 60 pixels per second speed
 const speed = 60
+#how many pixels are convered duriung jump
 const jump_power = -250
+#rate of fall speed
 const gravity = 10
 
 #zero negative 1 is top of box, 0 one is top of box
