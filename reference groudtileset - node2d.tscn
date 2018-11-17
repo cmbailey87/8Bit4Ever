@@ -13,7 +13,6 @@ _sections_unfolded = [ "Material", "Pause", "Transform", "Visibility", "Z Index"
 
 [node name="ground01" type="Sprite" parent="." index="0"]
 
-editor/display_folded = true
 position = Vector2( 45.2259, 21.7052 )
 texture = ExtResource( 1 )
 region_enabled = true
@@ -377,6 +376,7 @@ shape = SubResource( 1 )
 
 [node name="box01" type="Sprite" parent="." index="14"]
 
+editor/display_folded = true
 position = Vector2( 67.5348, 94.6225 )
 texture = ExtResource( 1 )
 region_enabled = true
