@@ -5,7 +5,7 @@
 [ext_resource path="res://Enemy1-KinematicBody2D.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Enemy2-KinematicBody2D.tscn" type="PackedScene" id=4]
 
-[node name="stageone" type="Node2D"]
+[node name="stageone" type="Node2D" index="0"]
 
 __meta__ = {
 "_edit_vertical_guides_": [ -40.2783 ]
