@@ -10,7 +10,7 @@ const gravity = 10
 #zero negative 1 is top of box, 0 one is top of box
 const FLOOR = Vector2(0,-1)
 
-const fireball = preload("res://fireball-area2d.tscn")
+const fireball = preload("res://fireball-Area2D.tscn")
 
 #boolean flag for being on the ground
 var on_ground = false

@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Runner man updatr2spritesheet.png-9c281f41ea265b0e5d2da180b929848e.stex"
+path="res://.import/DoodFireball002.png-a1a8dc0897f31dfcb8eece6b95418e4b.stex"
 
 [deps]
 
-source_file="res://Runner man updatr2spritesheet.png"
-dest_files=[ "res://.import/Runner man updatr2spritesheet.png-9c281f41ea265b0e5d2da180b929848e.stex" ]
+source_file="res://Dood/DoodFireball002.png"
+dest_files=[ "res://.import/DoodFireball002.png-a1a8dc0897f31dfcb8eece6b95418e4b.stex" ]
 
 [params]
 

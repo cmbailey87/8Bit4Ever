@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://Dood/DoodIdle001.png" type="Texture" id=2]
@@ -15,6 +15,11 @@
 [ext_resource path="res://Dood/DoodPunch002.png" type="Texture" id=13]
 [ext_resource path="res://Dood/DoodPunch003.png" type="Texture" id=14]
 [ext_resource path="res://Dood/DoodPunch004.png" type="Texture" id=15]
+[ext_resource path="res://Dood/DoodFireball001.png" type="Texture" id=16]
+[ext_resource path="res://Dood/DoodFireball002.png" type="Texture" id=17]
+[ext_resource path="res://Dood/DoodFireball003.png" type="Texture" id=18]
+[ext_resource path="res://Dood/DoodFireball004.png" type="Texture" id=19]
+[ext_resource path="res://Dood/DoodFireball005.png" type="Texture" id=20]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -44,10 +49,10 @@ animations = [ {
 "name": "punch",
 "speed": 12.0
 }, {
-"frames": [ ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ) ],
+"frames": [ ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ) ],
 "loop": false,
 "name": "fireshot",
-"speed": 10.0
+"speed": 12.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -71,8 +76,8 @@ __meta__ = {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 
 frames = SubResource( 1 )
-animation = "idle"
-frame = 1
+animation = "fireshot"
+frame = 2
 _sections_unfolded = [ "Material", "Pause", "Transform", "Visibility", "Z Index" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
@@ -82,7 +87,7 @@ shape = SubResource( 2 )
 
 [node name="Position2D" type="Position2D" parent="." index="2"]
 
-position = Vector2( 12.4208, -0.794601 )
+position = Vector2( 14.4208, -0.794601 )
 _sections_unfolded = [ "Transform" ]
 
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
