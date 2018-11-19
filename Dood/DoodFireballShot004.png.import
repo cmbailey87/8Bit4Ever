@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/DoodFireball001.png-9e7a7d2a6ca865a0bfafe49339981073.stex"
+path="res://.import/DoodFireballShot004.png-ea21e2052f805ffd73731db5b4462500.stex"
 
 [deps]
 
-source_file="res://Dood/DoodFireball001.png"
-dest_files=[ "res://.import/DoodFireball001.png-9e7a7d2a6ca865a0bfafe49339981073.stex" ]
+source_file="res://Dood/DoodFireballShot004.png"
+dest_files=[ "res://.import/DoodFireballShot004.png-ea21e2052f805ffd73731db5b4462500.stex" ]
 
 [params]
 
