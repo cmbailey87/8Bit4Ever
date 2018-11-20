@@ -11,6 +11,7 @@ const gravity = 10
 const FLOOR = Vector2(0,-1)
 
 const fireball = preload("res://fireball-Area2D.tscn")
+const fireballsmall = preload("res://fireballsmall-Area2D.tscn")
 
 #boolean flag for being on the ground
 var on_ground = false
@@ -58,7 +59,7 @@ func _physics_process(delta):
 		
 		#may notes for top down game
 		#jump for side scroller
-	if Input.is_action_pressed("ui_up"):
+	if Input.is_action_pressed("ui_accept"):
 		if is_attacking == false:
 			if on_ground == true:
 				velocity.y = jump_power
@@ -77,12 +78,12 @@ func _physics_process(delta):
 		is_attacking = true
 		$AnimatedSprite.play("fireshot")
 		#create instance of fireball
-		var fireballv = fireball.instance()
+		var fireballv = fireballsmall.instance()
 		#fireball directions of fire
 		if sign($Position2D.position.x) == 1:
-			fireballv.set_fireball_direction(1)
+			fireballv.set_fireballsmall_direction(1)
 		else:
-			fireballv.set_fireball_direction(-1)
+			fireballv.set_fireballsmall_direction(-1)
 		#add fireball to scene
 		get_parent().add_child(fireballv)
 		#set position

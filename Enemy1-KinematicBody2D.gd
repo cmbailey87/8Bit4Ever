@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+var is_dead = false
+
 const gravity = 10
 #made this negative so he could walk left in the starting animation...
 const speed = 30
@@ -20,6 +22,14 @@ func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
 	pass
+	
+func dead():
+	is_dead = true
+	velocity = Vector2(0,0)
+	$AnimatedSprite.play("dead")
+	$CollisionShape2D.disabled = true	
+	$Timer.start()
+	
 
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
@@ -27,15 +37,17 @@ func _ready():
 #	pass
 
 func _physics_process(delta):
-	velocity.x = speed * direction
-	if direction == 1:
-		$AnimatedSprite.flip_h = false
-	else:
-		$AnimatedSprite.flip_h = true
-		
-	$AnimatedSprite.play("walk")
-	velocity.y += gravity
-	velocity = move_and_slide(velocity, FLOOR)
+	#check if alive
+	if is_dead == false:
+		velocity.x = speed * direction
+		if direction == 1:
+			$AnimatedSprite.flip_h = false
+		else:
+			$AnimatedSprite.flip_h = true
+			
+		$AnimatedSprite.play("walk")
+		velocity.y += gravity
+		velocity = move_and_slide(velocity, FLOOR)
 	
 	#if wall is detected, change direction of velocity to negative
 	if is_on_wall():
@@ -45,3 +57,6 @@ func _physics_process(delta):
 	if $RayCast2D.is_colliding() == false:
 		direction = direction * -1
 		$RayCast2D.position.x *= -1
+
+func _on_Timer_timeout():
+	queue_free()

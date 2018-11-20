@@ -1,5 +1,6 @@
 extends Area2D
-const speed = 100
+const speed = 150
+
 var velocity = Vector2()
 var direction = 1
 
@@ -17,7 +18,7 @@ func _ready():
 #	# Update game logic here.
 #	pass
 
-func set_fireball_direction(dir):
+func set_fireballsmall_direction(dir):
 	direction = dir
 	if dir == -1:
 		$AnimatedSprite.flip_h = true
@@ -30,15 +31,12 @@ func _physics_process(delta):
 	$AnimatedSprite.play("shoot")
 
 
-
-
-
-
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
-	
 
 
-
-func _on_fireballArea2D_body_entered(body):
+func _on_fireballsmallArea2D_body_entered(body):
+	#checks if enemy exist in body name
+	if "Enemy" in body.name:
+		body.dead()
 	queue_free()
