@@ -43,9 +43,13 @@ func dead():
 	hp -= 1 
 	if hp <= 0:
 		is_dead = true
-		velocity = Vector2(0,0)
+		#velocity = Vector2(0,0)
 		$AnimatedSprite.play("dead")
-		$CollisionShape2D.disabled = true	
+		$CollisionShape2D.scale = Vector2(1.7,1.3)
+		
+		$CollisionShape2D.disabled = true
+		
+		
 		$Timer.start()
 		if scale > Vector2(1,1):
 			#parent node is hte stage node, screenshake is childnode, scren_shake is function in childnode

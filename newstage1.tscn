@@ -5,7 +5,7 @@
 [ext_resource path="res://Enemy2-KinematicBody2D.tscn" type="PackedScene" id=3]
 [ext_resource path="res://player1NEw.tscn" type="PackedScene" id=4]
 
-[node name="newstage1" type="Node2D"]
+[node name="newstage1" type="Node2D" index="0"]
 
 _sections_unfolded = [ "Material", "Pause", "Transform", "Visibility", "Z Index" ]
 __meta__ = {
@@ -41,6 +41,9 @@ position = Vector2( 281.868, 64.3518 )
 [node name="Enemy1-KinematicBody2D2" parent="." index="2" instance=ExtResource( 3 )]
 
 position = Vector2( 289.829, -92.8788 )
+speed = 30
+hp = 1
+size = Vector2( 1, 1 )
 
 [node name="player" parent="." index="3" instance=ExtResource( 4 )]
 
