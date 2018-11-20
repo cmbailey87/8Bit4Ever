@@ -36,7 +36,7 @@ animations = [ {
 "frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
 "loop": true,
 "name": "fireshot",
-"speed": 12.0
+"speed": 8.0
 }, {
 "frames": [ ExtResource( 12 ), ExtResource( 13 ) ],
 "loop": false,
@@ -53,13 +53,14 @@ animations = [ {
 "name": "punch",
 "speed": 12.0
 } ]
+_sections_unfolded = [ "Resource" ]
 
 [sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
 extents = Vector2( 6.69279, 7.80181 )
 
-[node name="player" type="KinematicBody2D" index="0"]
+[node name="player" type="KinematicBody2D"]
 
 position = Vector2( 152.203, 68.2834 )
 z_index = 1
@@ -97,7 +98,7 @@ rotating = false
 current = true
 zoom = Vector2( 0.8, 0.8 )
 limit_left = 0
-limit_top = -200
+limit_top = -180
 limit_right = 600
 limit_bottom = 180
 limit_smoothed = false
