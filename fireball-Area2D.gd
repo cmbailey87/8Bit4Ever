@@ -37,6 +37,10 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 func _on_fireballsmallArea2D_body_entered(body):
 	#checks if enemy exist in body name
+	if "player" in body.name:
+		pass
+	else:
+		queue_free()
 	if "Enemy" in body.name:
 		body.dead()
-	queue_free()
+	

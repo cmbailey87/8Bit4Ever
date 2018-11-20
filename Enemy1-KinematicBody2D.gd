@@ -4,12 +4,27 @@ var is_dead = false
 
 const gravity = 10
 #made this negative so he could walk left in the starting animation...
-const speed = 30
+#const speed = 30
+#retire
+
+
+
+
 #so godot knows where to detect the floor
 const FLOOR = Vector2(0,-1)
 
 #default 00
 var velocity = Vector2()
+
+#export int, variable that is editable in the inspector
+export(int) var speed = 30 
+
+#hp create an HP variable
+export(int) var hp = 1
+
+#size variable
+export(Vector2) var size = Vector2(1,1)
+
 
 #track the srpite direction
 var direction = 1
@@ -21,15 +36,22 @@ var direction = 1
 func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
+	scale = size
 	pass
 	
 func dead():
-	is_dead = true
-	velocity = Vector2(0,0)
-	$AnimatedSprite.play("dead")
-	$CollisionShape2D.disabled = true	
-	$Timer.start()
-	
+	hp -= 1 
+	if hp <= 0:
+		is_dead = true
+		velocity = Vector2(0,0)
+		$AnimatedSprite.play("dead")
+		$CollisionShape2D.disabled = true	
+		$Timer.start()
+		if scale > Vector2(1,1):
+			#parent node is hte stage node, screenshake is childnode, scren_shake is function in childnode
+			#screenshake of lenth, power, prority
+			get_parent().get_node("screenshake").screen_shake(1,10,100)
+
 
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
@@ -57,6 +79,11 @@ func _physics_process(delta):
 	if $RayCast2D.is_colliding() == false:
 		direction = direction * -1
 		$RayCast2D.position.x *= -1
+	
+	if get_slide_count() > 0:
+		for i in range(get_slide_count()):
+			if "player" in get_slide_collision(i).collider.name:
+				get_slide_collision(i).collider.dead()
 
 func _on_Timer_timeout():
 	queue_free()

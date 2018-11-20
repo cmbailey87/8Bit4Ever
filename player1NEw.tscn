@@ -28,10 +28,15 @@ animations = [ {
 "name": "idle",
 "speed": 3.0
 }, {
+"frames": [ ExtResource( 2 ), null, null, ExtResource( 2 ), null, null ],
+"loop": true,
+"name": "dead",
+"speed": 24.0
+}, {
 "frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "fireshot",
-"speed": 8.0
+"speed": 7.0
 }, {
 "frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": false,
@@ -58,9 +63,9 @@ _sections_unfolded = [ "Resource" ]
 [sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
-extents = Vector2( 6.69279, 7.80181 )
+extents = Vector2( 4.17297, 7.61052 )
 
-[node name="player" type="KinematicBody2D"]
+[node name="player" type="KinematicBody2D" index="0"]
 
 position = Vector2( 152.203, 68.2834 )
 z_index = 1
@@ -70,15 +75,11 @@ collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Material", "Transform", "Visibility", "Z Index", "collision" ]
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 
 frames = SubResource( 1 )
-animation = "fireshot"
-frame = 3
+animation = "dead"
 _sections_unfolded = [ "Material", "Pause", "Transform", "Visibility", "Z Index" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
@@ -88,7 +89,7 @@ shape = SubResource( 2 )
 
 [node name="Position2D" type="Position2D" parent="." index="2"]
 
-position = Vector2( 14.4208, -0.794601 )
+position = Vector2( 4.4208, 1.2054 )
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
 [node name="Camera2D" type="Camera2D" parent="." index="3"]
@@ -96,7 +97,7 @@ _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 anchor_mode = 1
 rotating = false
 current = true
-zoom = Vector2( 1, 1 )
+zoom = Vector2( 0.8, 0.8 )
 limit_left = 0
 limit_top = -180
 limit_right = 1120
@@ -117,6 +118,15 @@ editor_draw_limits = true
 editor_draw_drag_margin = false
 _sections_unfolded = [ "Drag Margin", "Editor", "Limit", "Material", "Offset", "Smoothing", "Transform", "Visibility", "Z Index" ]
 
+[node name="Timer" type="Timer" parent="." index="4"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
 
