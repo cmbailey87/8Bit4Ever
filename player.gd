@@ -4,8 +4,12 @@ extends KinematicBody2D
 const speed = 60
 #how many pixels are convered duriung jump
 const jump_power = -250
+const double_jump_power = -250
 #rate of fall speed
 const gravity = 10
+
+var double_jump_enabled = false
+var double_jump_counter = 0
 
 #zero negative 1 is top of box, 0 one is top of box
 const FLOOR = Vector2(0,-1)
@@ -70,10 +74,24 @@ func _physics_process(delta):
 				if on_ground == true:
 					velocity.y = jump_power
 					on_ground = false
+					#double_jump_enabled = true
+					double_jump_counter = 1
 		#elif Input.is_action_pressed("ui_down"):
 		#	velocity.y = speed
 		#else:
 		#	velocity.y = 0
+		
+		#DOUBLE JUMP
+		if Input.is_action_just_pressed("ui_accept"):
+			if is_attacking == false:
+				if on_ground == false:
+					#if double_jump_enabled == true:
+					if double_jump_counter > 0 :
+						velocity.y = double_jump_power
+						on_ground = false
+						#double_jump_enabled = false
+						double_jump_counter = 0
+		
 		
 		
 		#FIREBALLKEY
