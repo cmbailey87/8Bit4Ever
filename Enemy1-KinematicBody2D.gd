@@ -43,9 +43,10 @@ func dead():
 	hp -= 1 
 	if hp <= 0:
 		is_dead = true
-		#velocity = Vector2(0,0)
+		velocity = Vector2(0,0)
 		$AnimatedSprite.play("dead")
-		$CollisionShape2D.scale = Vector2(1.7,1.3)
+		#call animated sprite within enemy node, set the position of image lower to lay on ground
+		$AnimatedSprite.position = Vector2(1.7,1.3)
 		
 		$CollisionShape2D.disabled = true
 		
