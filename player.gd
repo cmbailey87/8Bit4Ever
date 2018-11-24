@@ -10,6 +10,8 @@ const gravity = 10
 
 var double_jump_enabled = false
 var double_jump_counter = 0
+var ghostin = false
+var ghosting_ready = false
 
 #zero negative 1 is top of box, 0 one is top of box
 const FLOOR = Vector2(0,-1)
@@ -27,6 +29,7 @@ var velocity = Vector2()
 var is_dead = false
 
 
+
 # class member variables go here, for example:
 # var a = 2
 # var b = "textvar"
@@ -41,6 +44,8 @@ var is_dead = false
 #	# Update game logic here.
 #	pass
 
+		
+		
 #character controls physics
 func _physics_process(delta):
 	
@@ -72,26 +77,47 @@ func _physics_process(delta):
 		if Input.is_action_pressed("ui_accept"):
 			if is_attacking == false:
 				if on_ground == true:
-					velocity.y = jump_power
-					on_ground = false
-					#double_jump_enabled = true
-					double_jump_counter = 1
+				
+						velocity.y = jump_power
+						on_ground = false
+						#double_jump_enabled = true
+						double_jump_counter = 1
+						
 		#elif Input.is_action_pressed("ui_down"):
 		#	velocity.y = speed
 		#else:
 		#	velocity.y = 0
 		
 		#DOUBLE JUMP
-		if Input.is_action_just_pressed("ui_accept"):
-			if is_attacking == false:
-				if on_ground == false:
+		if Input.is_action_just_pressed("ui_accept") :
+			if on_ground == false:
 					#if double_jump_enabled == true:
 					if double_jump_counter > 0 :
 						velocity.y = double_jump_power
 						on_ground = false
 						#double_jump_enabled = false
 						double_jump_counter = 0
+						
+
+
+						
 		
+		velocity.y += gravity
+		
+		if is_on_floor():
+			if on_ground == false:
+				is_attacking = false
+			on_ground = true
+		else: #hes in the air
+			if is_attacking == false:
+				on_ground = false
+				if velocity.y < 0:
+					$AnimatedSprite.play("jump")
+				if velocity.y < 0:
+					$AnimatedSprite.play("doublejump")
+					
+				else:
+					$AnimatedSprite.play("fall")
 		
 		
 		#FIREBALLKEY
@@ -112,21 +138,8 @@ func _physics_process(delta):
 			get_parent().add_child(fireballv)
 			#set position
 			fireballv.position = $Position2D.global_position
-		
-		velocity.y += gravity
-		
-		if is_on_floor():
-			if on_ground == false:
-				is_attacking = false
-			on_ground = true
-		else: #hes in the air
-			if is_attacking == false:
-				on_ground = false
-				if velocity.y < 0:
-					$AnimatedSprite.play("jump")
-				else:
-					$AnimatedSprite.play("fall")
-		
+			
+			
 		#move and slide function allows the player to move about the level
 		#
 		velocity = move_and_slide(velocity,FLOOR)
@@ -150,3 +163,22 @@ func _on_AnimatedSprite_animation_finished():
 
 func _on_Timer_timeout():
 	get_tree().change_scene("titlescreen.tscn")
+	
+func _on_ghost_Timer2_timeout():
+	
+		#make copy of ghost object..
+		#create car ghost load ghost sceen. and create the ghost, instance creates copy of it
+		var this_ghost = preload("res://ghost.tscn").instance()
+		#give ghost parent
+		get_parent().add_child(this_ghost)
+		this_ghost.position = position
+		#assinging snimated sprite thourgh code
+		#seen on sprite
+		#get frames, get current animation from current frame
+		this_ghost.texture = $AnimatedSprite.frames.get_frame($AnimatedSprite.animation, $AnimatedSprite.frame)
+		#face the same direction as main sprite
+		this_ghost.flip_h = $AnimatedSprite.flip_h
+	
+
+
+
