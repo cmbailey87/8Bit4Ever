@@ -3,18 +3,18 @@
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://Dood/DoodIdle001.png" type="Texture" id=2]
 [ext_resource path="res://Dood/DoodIdle002.png" type="Texture" id=3]
-[ext_resource path="res://Dood/DoodJump001.png" type="Texture" id=4]
-[ext_resource path="res://Dood/DoodJump002.png" type="Texture" id=5]
-[ext_resource path="res://Dood/DoodRun001.png" type="Texture" id=6]
-[ext_resource path="res://Dood/DoodRun002.png" type="Texture" id=7]
-[ext_resource path="res://Dood/DoodRun003.png" type="Texture" id=8]
-[ext_resource path="res://Dood/DoodRun004.png" type="Texture" id=9]
-[ext_resource path="res://Dood/DoodFireballShot001.png" type="Texture" id=10]
-[ext_resource path="res://Dood/DoodFireballShot002.png" type="Texture" id=11]
-[ext_resource path="res://Dood/DoodFireballShot003.png" type="Texture" id=12]
-[ext_resource path="res://Dood/DoodFireballShot004.png" type="Texture" id=13]
-[ext_resource path="res://Dood/DoodFall001.png" type="Texture" id=14]
-[ext_resource path="res://Dood/DoodFall002.png" type="Texture" id=15]
+[ext_resource path="res://Dood/DoodFall001.png" type="Texture" id=4]
+[ext_resource path="res://Dood/DoodJump001.png" type="Texture" id=5]
+[ext_resource path="res://Dood/DoodFall002.png" type="Texture" id=6]
+[ext_resource path="res://Dood/DoodJump002.png" type="Texture" id=7]
+[ext_resource path="res://Dood/DoodRun001.png" type="Texture" id=8]
+[ext_resource path="res://Dood/DoodRun002.png" type="Texture" id=9]
+[ext_resource path="res://Dood/DoodRun003.png" type="Texture" id=10]
+[ext_resource path="res://Dood/DoodRun004.png" type="Texture" id=11]
+[ext_resource path="res://Dood/DoodFireballShot001.png" type="Texture" id=12]
+[ext_resource path="res://Dood/DoodFireballShot002.png" type="Texture" id=13]
+[ext_resource path="res://Dood/DoodFireballShot003.png" type="Texture" id=14]
+[ext_resource path="res://Dood/DoodFireballShot004.png" type="Texture" id=15]
 [ext_resource path="res://Dood/DoodPunch001.png" type="Texture" id=16]
 [ext_resource path="res://Dood/DoodPunch002.png" type="Texture" id=17]
 [ext_resource path="res://Dood/DoodPunch003.png" type="Texture" id=18]
@@ -33,22 +33,22 @@ animations = [ {
 "name": "dead",
 "speed": 24.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "doublejump",
-"speed": 14.0
+"speed": 12.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
 "loop": true,
 "name": "run",
 "speed": 18.0
 }, {
-"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
+"frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
 "loop": true,
 "name": "fireshot",
 "speed": 7.0
 }, {
-"frames": [ ExtResource( 14 ), ExtResource( 15 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 6 ) ],
 "loop": false,
 "name": "fall",
 "speed": 8.0
@@ -58,7 +58,7 @@ animations = [ {
 "name": "punch",
 "speed": 12.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 7 ) ],
 "loop": false,
 "name": "jump",
 "speed": 8.0
@@ -69,7 +69,7 @@ animations = [ {
 custom_solver_bias = 0.0
 extents = Vector2( 4.17297, 7.61052 )
 
-[node name="player" type="KinematicBody2D" index="0"]
+[node name="player" type="KinematicBody2D"]
 
 position = Vector2( 152.203, 68.2834 )
 z_index = 1
@@ -91,6 +91,7 @@ _sections_unfolded = [ "Material", "Pause", "Transform", "Visibility", "Z Index"
 
 position = Vector2( 0.00854492, -0.0104103 )
 shape = SubResource( 2 )
+_sections_unfolded = [ "Z Index" ]
 
 [node name="Position2D" type="Position2D" parent="." index="2"]
 
@@ -105,7 +106,7 @@ current = true
 zoom = Vector2( 0.8, 0.8 )
 limit_left = 0
 limit_top = -180
-limit_right = 1120
+limit_right = 1890
 limit_bottom = 180
 limit_smoothed = false
 drag_margin_h_enabled = true
@@ -137,10 +138,19 @@ wait_time = 0.1
 one_shot = false
 autostart = true
 
+[node name="dash_timer" type="Timer" parent="." index="6"]
+
+process_mode = 1
+wait_time = 0.5
+one_shot = false
+autostart = false
+
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
 [connection signal="timeout" from="ghost_Timer2" to="." method="_on_ghost_Timer2_timeout"]
+
+[connection signal="timeout" from="dash_timer" to="." method="_on_dash_timer_timeout"]
 
 

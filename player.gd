@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+
 #constant cant be change, 60 pixels per second speed
 const speed = 60
 #how many pixels are convered duriung jump
@@ -9,10 +10,16 @@ const double_jump_power = -250
 const gravity = 10
 
 var double_jump_enabled = false
-var double_jump_counter = 0
+var jump_counter = 0
+var maxjumper = 1
+var falling = false
 var ghostin = false
 var ghosting_ready = false
+var in_air = false
 
+var state = 0
+var dasher = 0
+const dash_speed = 240
 #zero negative 1 is top of box, 0 one is top of box
 const FLOOR = Vector2(0,-1)
 
@@ -57,31 +64,65 @@ func _physics_process(delta):
 				if is_attacking == false:
 					$AnimatedSprite.play("run")
 					$AnimatedSprite.flip_h = false
+					state = 1
 					if sign($Position2D.position.x) == -1:
 						$Position2D.position.x *= -1
+					
+
+		elif Input.is_action_pressed("ui_dash_right") :
+			var current_position = self.position.x
+			if is_attacking == false || is_on_floor() == false:
+					velocity.x = dash_speed
+					if is_attacking == false:
+						$AnimatedSprite.play("run")
+						$AnimatedSprite.flip_h = false
+						state = 1
+						dasher += 1
+						ghostin = true
+						if sign($Position2D.position.x) == -1:
+							$Position2D.position.x *= -1
+							if current_position == (current_position+50):
+								velocity.x = 0
+
 		elif Input.is_action_pressed("ui_left"):
 			if is_attacking == false || is_on_floor() == false:
 				velocity.x = -speed
 				if is_attacking == false:
 					$AnimatedSprite.play("run")
 					$AnimatedSprite.flip_h = true
+					state = 1
+					if sign($Position2D.position.x) == 1:
+						$Position2D.position.x *= -1
+						
+
+
+		elif Input.is_action_pressed("ui_dash_left"):
+			if is_attacking == false || is_on_floor() == false:
+				velocity.x = -dash_speed
+				if is_attacking == false:
+					$AnimatedSprite.play("run")
+					$AnimatedSprite.flip_h = true
+					state = 1
+					ghostin = true
 					if sign($Position2D.position.x) == 1:
 						$Position2D.position.x *= -1
 		else:
 			velocity.x = 0
 			if on_ground == true && is_attacking == false:
 				$AnimatedSprite.play("idle")
+				state = 0
+				
 			
 			#may notes for top down game
 			#jump for side scroller
 		if Input.is_action_pressed("ui_accept"):
 			if is_attacking == false:
 				if on_ground == true:
-				
-						velocity.y = jump_power
-						on_ground = false
-						#double_jump_enabled = true
-						double_jump_counter = 1
+					velocity.y = jump_power
+					on_ground = false
+					#jump_counter += 1
+					state = 2
+						
 						
 		#elif Input.is_action_pressed("ui_down"):
 		#	velocity.y = speed
@@ -89,34 +130,40 @@ func _physics_process(delta):
 		#	velocity.y = 0
 		
 		#DOUBLE JUMP
-		if Input.is_action_just_pressed("ui_accept") :
+		if Input.is_action_just_pressed("ui_accept"):
 			if on_ground == false:
+				if is_attacking == false:
 					#if double_jump_enabled == true:
-					if double_jump_counter > 0 :
+					if maxjumper > jump_counter:
 						velocity.y = double_jump_power
-						on_ground = false
 						#double_jump_enabled = false
-						double_jump_counter = 0
-						
+						ghostin = true
+						jump_counter += 1
+						state = 3
 
 
-						
-		
 		velocity.y += gravity
+		
+		#tell if player is on the ground...
 		
 		if is_on_floor():
 			if on_ground == false:
 				is_attacking = false
 			on_ground = true
+			jump_counter = 0
+			ghostin = false
+			falling = false
+			double_jump_enabled = false
 		else: #hes in the air
 			if is_attacking == false:
 				on_ground = false
-				if velocity.y < 0:
+				if velocity.y < 0 :
 					$AnimatedSprite.play("jump")
-				if velocity.y < 0:
-					$AnimatedSprite.play("doublejump")
-					
-				else:
+					double_jump_enabled = true
+#				if ghostin == true && ghostin == true:
+#					$AnimatedSprite.play("doublejump")
+			
+				else :
 					$AnimatedSprite.play("fall")
 		
 		
@@ -165,7 +212,7 @@ func _on_Timer_timeout():
 	get_tree().change_scene("titlescreen.tscn")
 	
 func _on_ghost_Timer2_timeout():
-	
+	if ghostin == true:
 		#make copy of ghost object..
 		#create car ghost load ghost sceen. and create the ghost, instance creates copy of it
 		var this_ghost = preload("res://ghost.tscn").instance()
@@ -178,7 +225,16 @@ func _on_ghost_Timer2_timeout():
 		this_ghost.texture = $AnimatedSprite.frames.get_frame($AnimatedSprite.animation, $AnimatedSprite.frame)
 		#face the same direction as main sprite
 		this_ghost.flip_h = $AnimatedSprite.flip_h
+		
+		
+		
 	
 
+
+
+
+
+func _on_dash_timer_timeout():
+	dasher =true
 
 
