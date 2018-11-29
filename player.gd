@@ -3,23 +3,26 @@ extends KinematicBody2D
 
 #constant cant be change, 60 pixels per second speed
 const speed = 60
+
 #how many pixels are convered duriung jump
 const jump_power = -250
 const double_jump_power = -250
 #rate of fall speed
 const gravity = 10
 
-var double_jump_enabled = false
+#vari for dash controls
+var dash_speed = 200
+var max_speed = 300
+var dasher = false
+
 var jump_counter = 0
 var maxjumper = 1
-var falling = false
 var ghostin = false
-var ghosting_ready = false
-var in_air = false
+
+
 
 var state = 0
-var dasher = 0
-const dash_speed = 240
+
 #zero negative 1 is top of box, 0 one is top of box
 const FLOOR = Vector2(0,-1)
 
@@ -57,32 +60,24 @@ var is_dead = false
 func _physics_process(delta):
 	
 	if is_dead == false:
-	
+		
+		
 		if Input.is_action_pressed("ui_right"):
 			if is_attacking == false || is_on_floor() == false:
 				velocity.x = speed
+				dasher = true
 				if is_attacking == false:
 					$AnimatedSprite.play("run")
 					$AnimatedSprite.flip_h = false
 					state = 1
+					if Input.is_action_pressed("ui_dash") && dasher == true:
+						$AnimatedSprite.play("run")
+						velocity.x = dash_speed
+						
+						ghostin = true
+						$dash_timer.start()
 					if sign($Position2D.position.x) == -1:
 						$Position2D.position.x *= -1
-					
-
-		elif Input.is_action_pressed("ui_dash_right") :
-			var current_position = self.position.x
-			if is_attacking == false || is_on_floor() == false:
-					velocity.x = dash_speed
-					if is_attacking == false:
-						$AnimatedSprite.play("run")
-						$AnimatedSprite.flip_h = false
-						state = 1
-						dasher += 1
-						ghostin = true
-						if sign($Position2D.position.x) == -1:
-							$Position2D.position.x *= -1
-							if current_position == (current_position+50):
-								velocity.x = 0
 
 		elif Input.is_action_pressed("ui_left"):
 			if is_attacking == false || is_on_floor() == false:
@@ -91,21 +86,15 @@ func _physics_process(delta):
 					$AnimatedSprite.play("run")
 					$AnimatedSprite.flip_h = true
 					state = 1
+					if Input.is_action_just_pressed("ui_dash") && dasher == true:
+						$AnimatedSprite.play("run")
+						velocity.x = -dash_speed
+						ghostin = true
+						$ghost_Timer2.wait_time = 0.000001
+						$dash_timer.start()
 					if sign($Position2D.position.x) == 1:
 						$Position2D.position.x *= -1
 						
-
-
-		elif Input.is_action_pressed("ui_dash_left"):
-			if is_attacking == false || is_on_floor() == false:
-				velocity.x = -dash_speed
-				if is_attacking == false:
-					$AnimatedSprite.play("run")
-					$AnimatedSprite.flip_h = true
-					state = 1
-					ghostin = true
-					if sign($Position2D.position.x) == 1:
-						$Position2D.position.x *= -1
 		else:
 			velocity.x = 0
 			if on_ground == true && is_attacking == false:
@@ -133,15 +122,15 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("ui_accept"):
 			if on_ground == false:
 				if is_attacking == false:
-					#if double_jump_enabled == true:
 					if maxjumper > jump_counter:
 						velocity.y = double_jump_power
-						#double_jump_enabled = false
 						ghostin = true
 						jump_counter += 1
 						state = 3
 
 
+		
+		
 		velocity.y += gravity
 		
 		#tell if player is on the ground...
@@ -152,14 +141,12 @@ func _physics_process(delta):
 			on_ground = true
 			jump_counter = 0
 			ghostin = false
-			falling = false
-			double_jump_enabled = false
+			$ghost_Timer2.wait_time = 0.1
 		else: #hes in the air
 			if is_attacking == false:
 				on_ground = false
 				if velocity.y < 0 :
 					$AnimatedSprite.play("jump")
-					double_jump_enabled = true
 #				if ghostin == true && ghostin == true:
 #					$AnimatedSprite.play("doublejump")
 			
@@ -195,7 +182,8 @@ func _physics_process(delta):
 			for i in range(get_slide_count()):
 				if "Enemy" in get_slide_collision(i).collider.name:
 					dead()
-
+	
+		
 func dead():
 	is_dead = true
 	velocity = Vector2(0,0)
@@ -203,6 +191,7 @@ func dead():
 	$CollisionShape2D.disabled = true
 	$Timer.start()
 
+	
 
 func _on_AnimatedSprite_animation_finished():
 	is_attacking = false
@@ -228,13 +217,8 @@ func _on_ghost_Timer2_timeout():
 		
 		
 		
-	
-
-
-
-
-
 func _on_dash_timer_timeout():
-	dasher =true
+	$AnimatedSprite.position.x = 0
+	
 
 

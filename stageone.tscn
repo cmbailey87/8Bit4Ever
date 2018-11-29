@@ -7,7 +7,7 @@
 [ext_resource path="res://forest platformer/big tree 04.png" type="Texture" id=5]
 [ext_resource path="res://screenshake.gd" type="Script" id=6]
 
-[node name="stageone" type="Node2D" index="0"]
+[node name="stageone" type="Node2D"]
 
 _sections_unfolded = [ "Material", "Pause", "Transform", "Visibility", "Z Index" ]
 __meta__ = {
@@ -94,7 +94,7 @@ size = Vector2( 2, 2 )
 
 [node name="player" parent="." index="9" instance=ExtResource( 4 )]
 
-position = Vector2( 235.183, 83.3589 )
+position = Vector2( 1213.18, 101.359 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." index="10"]
 
