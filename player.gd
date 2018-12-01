@@ -70,12 +70,15 @@ func _physics_process(delta):
 					$AnimatedSprite.play("run")
 					$AnimatedSprite.flip_h = false
 					state = 1
-					if Input.is_action_pressed("ui_dash") && dasher == true:
+#					if Input.is_action_pressed("ui_dash") && dasher == true:
+#						$AnimatedSprite.play("run")
+#						velocity.x = dash_speed
+#						on_ground = false
+#						ghostin = true
+#						$dash_timer.start()
+					if Input.is_action_just_pressed("ui_dash") && dasher == true:
+						self.position.x += 60
 						$AnimatedSprite.play("run")
-						velocity.x = dash_speed
-						
-						ghostin = true
-						$dash_timer.start()
 					if sign($Position2D.position.x) == -1:
 						$Position2D.position.x *= -1
 
@@ -86,13 +89,16 @@ func _physics_process(delta):
 					$AnimatedSprite.play("run")
 					$AnimatedSprite.flip_h = true
 					state = 1
+#					if Input.is_action_pressed("ui_dash") && dasher == true:
+#						$AnimatedSprite.play("run")
+#						velocity.x = dash_speed
+#						on_ground = false
+#						ghostin = true
+#						$dash_timer.start()
 					if Input.is_action_just_pressed("ui_dash") && dasher == true:
+						self.position.x += -60
 						$AnimatedSprite.play("run")
-						velocity.x = -dash_speed
-						ghostin = true
-						$ghost_Timer2.wait_time = 0.000001
-						$dash_timer.start()
-					if sign($Position2D.position.x) == 1:
+					if sign($Position2D.position.x) == -1:
 						$Position2D.position.x *= -1
 						
 		else:
@@ -173,6 +179,9 @@ func _physics_process(delta):
 			#set position
 			fireballv.position = $Position2D.global_position
 			
+		if is_on_wall():
+			velocity.x = 0
+			
 			
 		#move and slide function allows the player to move about the level
 		#
@@ -215,7 +224,7 @@ func _on_ghost_Timer2_timeout():
 		#face the same direction as main sprite
 		this_ghost.flip_h = $AnimatedSprite.flip_h
 		
-		
+
 		
 func _on_dash_timer_timeout():
 	$AnimatedSprite.position.x = 0

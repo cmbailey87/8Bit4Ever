@@ -26,7 +26,7 @@ _sections_unfolded = [ "Resource" ]
 custom_solver_bias = 0.0
 extents = Vector2( 3.06921, 7.37761 )
 
-[node name="Enemy1-KinematicBody2D" type="KinematicBody2D" index="0"]
+[node name="Enemy1-KinematicBody2D" type="KinematicBody2D"]
 
 position = Vector2( -0.0852585, 0 )
 input_pickable = false
@@ -60,6 +60,7 @@ enabled = true
 exclude_parent = true
 cast_to = Vector2( 0, 12 )
 collision_mask = 1
+_sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
 
 [node name="Timer" type="Timer" parent="." index="3"]
 
