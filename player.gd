@@ -98,7 +98,7 @@ func _physics_process(delta):
 					if Input.is_action_just_pressed("ui_dash") && dasher == true:
 						self.position.x += -60
 						$AnimatedSprite.play("run")
-					if sign($Position2D.position.x) == -1:
+					if sign($Position2D.position.x) == 1:
 						$Position2D.position.x *= -1
  
 						
