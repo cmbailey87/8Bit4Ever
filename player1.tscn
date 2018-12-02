@@ -2,8 +2,8 @@
 
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://Runner man 2 idle.png" type="Texture" id=2]
-[ext_resource path="res://runnerman actions/runnerman005.png" type="Texture" id=3]
-[ext_resource path="res://runnerman actions/runnerman012.png" type="Texture" id=4]
+[ext_resource path="res://runnerman actions/runnerman012.png" type="Texture" id=3]
+[ext_resource path="res://runnerman actions/runnerman005.png" type="Texture" id=4]
 [ext_resource path="res://runnerman actions/runnerman003.png" type="Texture" id=5]
 [ext_resource path="res://runnerman actions/runnerman004.png" type="Texture" id=6]
 [ext_resource path="res://runnerman actions/runnerman006.png" type="Texture" id=7]
@@ -26,15 +26,15 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 3 ) ],
 "loop": false,
-"name": "jump",
+"name": "fall",
 "speed": 0.0
 }, {
 "frames": [ ExtResource( 4 ) ],
 "loop": false,
-"name": "fall",
+"name": "jump",
 "speed": 0.0
 }, {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 3 ), ExtResource( 3 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 4 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 4 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 3 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
 "loop": true,
 "name": "run",
 "speed": 16.0

@@ -6,7 +6,7 @@ const speed = 60
 
 #how many pixels are convered duriung jump
 const jump_power = -250
-const double_jump_power = -250
+const double_jump_power = -300
 #rate of fall speed
 const gravity = 10
 
@@ -100,7 +100,17 @@ func _physics_process(delta):
 						$AnimatedSprite.play("run")
 					if sign($Position2D.position.x) == -1:
 						$Position2D.position.x *= -1
+ 
 						
+#		elif Input.is_action_pressed("ui_accept"):
+#			if is_attacking == false:
+#				if on_ground == true:
+#					$AnimatedSprite.play("jump")
+#					velocity.y = jump_power
+#					on_ground = false
+#					#jump_counter += 1
+#					state = 2
+					
 		else:
 			velocity.x = 0
 			if on_ground == true && is_attacking == false:
@@ -113,16 +123,11 @@ func _physics_process(delta):
 		if Input.is_action_pressed("ui_accept"):
 			if is_attacking == false:
 				if on_ground == true:
+#					$AnimatedSprite.play("jump")
 					velocity.y = jump_power
 					on_ground = false
 					#jump_counter += 1
 					state = 2
-						
-						
-		#elif Input.is_action_pressed("ui_down"):
-		#	velocity.y = speed
-		#else:
-		#	velocity.y = 0
 		
 		#DOUBLE JUMP
 		if Input.is_action_just_pressed("ui_accept"):
@@ -133,6 +138,7 @@ func _physics_process(delta):
 						ghostin = true
 						jump_counter += 1
 						state = 3
+#						$AnimatedSprite.play("doublejump")
 
 
 		
@@ -147,14 +153,14 @@ func _physics_process(delta):
 			on_ground = true
 			jump_counter = 0
 			ghostin = false
-			$ghost_Timer2.wait_time = 0.1
 		else: #hes in the air
 			if is_attacking == false:
 				on_ground = false
-				if velocity.y < 0 :
+				if velocity.y < 0 && maxjumper > jump_counter :
 					$AnimatedSprite.play("jump")
-#				if ghostin == true && ghostin == true:
-#					$AnimatedSprite.play("doublejump")
+				elif velocity.y < 0 && maxjumper <= jump_counter:
+						$AnimatedSprite.play("doublejump")
+
 			
 				else :
 					$AnimatedSprite.play("fall")
@@ -202,8 +208,9 @@ func dead():
 
 	
 
-func _on_AnimatedSprite_animation_finished():
-	is_attacking = false
+
+
+
 
 
 func _on_Timer_timeout():
@@ -229,5 +236,8 @@ func _on_ghost_Timer2_timeout():
 func _on_dash_timer_timeout():
 	$AnimatedSprite.position.x = 0
 	
+
+func _on_AnimatedSprite_animation_finished():
+	is_attacking = false
 
 
