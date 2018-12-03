@@ -28,6 +28,7 @@ const FLOOR = Vector2(0,-1)
 
 const fireball = preload("res://fireball-Area2D.tscn")
 const fireballsmall = preload("res://fireballsmall-Area2D.tscn")
+const dash = preload("res://dash-Area2D.tscn")
 
 #boolean flag for being on the ground
 var on_ground = false
@@ -77,8 +78,21 @@ func _physics_process(delta):
 #						ghostin = true
 #						$dash_timer.start()
 					if Input.is_action_just_pressed("ui_dash") && dasher == true:
-						self.position.x += 60
-						$AnimatedSprite.play("run")
+						if is_on_floor():
+							velocity.x = 0
+						$AnimatedSprite.play("fireshot")
+						is_attacking = true
+						self.position.x += 100
+						var dashv = dash.instance()
+						#fireball directions of fire
+						if sign($Position2D2.position.x) == -1:
+							dashv.set_dash_direction(1)
+						#add fireball to scene
+						get_parent().add_child(dashv)
+						#set position
+						dashv.position = $Position2D2.global_position
+						
+						
 					if sign($Position2D.position.x) == -1:
 						$Position2D.position.x *= -1
 
@@ -157,9 +171,13 @@ func _physics_process(delta):
 			if is_attacking == false:
 				on_ground = false
 				if velocity.y < 0 && maxjumper > jump_counter :
+<<<<<<< HEAD
 					$AnimatedSprite.play("doublejump")
+=======
+					$AnimatedSprite.play("flip")
+>>>>>>> 4bf5403ed503da64a702f8cc21d58f73250b879c
 				elif velocity.y < 0 && maxjumper <= jump_counter:
-						$AnimatedSprite.play("doublejump")
+						$AnimatedSprite.play("flip")
 
 			
 				else :
@@ -187,6 +205,8 @@ func _physics_process(delta):
 			
 		if is_on_wall():
 			velocity.x = 0
+			
+		
 			
 			
 		#move and slide function allows the player to move about the level
