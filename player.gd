@@ -70,31 +70,30 @@ func _physics_process(delta):
 				if is_attacking == false:
 					$AnimatedSprite.play("run")
 					$AnimatedSprite.flip_h = false
-					state = 1
-#					if Input.is_action_pressed("ui_dash") && dasher == true:
-#						$AnimatedSprite.play("run")
-#						velocity.x = dash_speed
-#						on_ground = false
-#						ghostin = true
-#						$dash_timer.start()
-					if Input.is_action_just_pressed("ui_dash") && dasher == true:
-						if is_on_floor():
-							velocity.x = 0
-						$AnimatedSprite.play("fireshot")
-						is_attacking = true
-						self.position.x += 100
-						var dashv = dash.instance()
-						#fireball directions of fire
-						if sign($Position2D2.position.x) == -1:
-							dashv.set_dash_direction(1)
-						#add fireball to scene
-						get_parent().add_child(dashv)
-						#set position
-						dashv.position = $Position2D2.global_position
-						
-						
+					#fireball position
 					if sign($Position2D.position.x) == -1:
 						$Position2D.position.x *= -1
+					#the position where the animation occurs..the 2dcurson
+					if sign($Position2D2.position.x) == 1:
+						$Position2D2.position.x *= -1
+								# dash animation
+			if Input.is_action_just_pressed("ui_dash") && dasher == true:
+				#stop player from moving duting animation dash
+				if is_on_floor():
+					velocity.x = 0
+				#dash animation play
+				$AnimatedSprite.play("fireshot")
+				is_attacking = true
+				self.position.x += 100
+				var dashv = dash.instance()
+				#Dash direction normal or flipped
+				if sign($Position2D2.position.x) == 1:
+					dashv.set_dash_direction(1)
+							#add fireball to scene
+				get_parent().add_child(dashv)
+				#set position
+				dashv.position = $Position2D2.global_position
+				
 
 		elif Input.is_action_pressed("ui_left"):
 			if is_attacking == false || is_on_floor() == false:
@@ -102,29 +101,30 @@ func _physics_process(delta):
 				if is_attacking == false:
 					$AnimatedSprite.play("run")
 					$AnimatedSprite.flip_h = true
-					state = 1
-#					if Input.is_action_pressed("ui_dash") && dasher == true:
-#						$AnimatedSprite.play("run")
-#						velocity.x = dash_speed
-#						on_ground = false
-#						ghostin = true
-#						$dash_timer.start()
-					if Input.is_action_just_pressed("ui_dash") && dasher == true:
-						self.position.x += -60
-						$AnimatedSprite.play("run")
+					#fireball position
 					if sign($Position2D.position.x) == 1:
 						$Position2D.position.x *= -1
- 
-						
-#		elif Input.is_action_pressed("ui_accept"):
-#			if is_attacking == false:
-#				if on_ground == true:
-#					$AnimatedSprite.play("jump")
-#					velocity.y = jump_power
-#					on_ground = false
-#					#jump_counter += 1
-#					state = 2
-					
+					if sign($Position2D2.position.x) == -1:
+						$Position2D2.position.x *= -1
+								# dash animation
+			if Input.is_action_just_pressed("ui_dash") && dasher == true:
+				#stop player from moving duting animation dash
+				if is_on_floor():
+					velocity.x = 0
+				#dash animation play
+				$AnimatedSprite.play("fireshot")
+				is_attacking = true
+				self.position.x += -100
+				var dashv = dash.instance()
+				#Dash direction of execution...not placement..to flip animation
+				#plays dash animation behind sprite in direction of execution
+				if sign($Position2D2.position.x) == 1:
+					dashv.set_dash_direction(-1)
+							#add fireball to scene
+				get_parent().add_child(dashv)
+				#set position
+				dashv.position = $Position2D2.global_position
+
 		else:
 			velocity.x = 0
 			if on_ground == true && is_attacking == false:
@@ -171,11 +171,7 @@ func _physics_process(delta):
 			if is_attacking == false:
 				on_ground = false
 				if velocity.y < 0 && maxjumper > jump_counter :
-<<<<<<< HEAD
-					$AnimatedSprite.play("doublejump")
-=======
 					$AnimatedSprite.play("flip")
->>>>>>> 4bf5403ed503da64a702f8cc21d58f73250b879c
 				elif velocity.y < 0 && maxjumper <= jump_counter:
 						$AnimatedSprite.play("flip")
 
@@ -187,8 +183,8 @@ func _physics_process(delta):
 		#FIREBALLKEY
 		
 		if Input.is_action_just_pressed("ui_focus_next") && is_attacking == false:
-			if is_on_floor():
-				velocity.x = 0
+			if is_on_floor() || on_ground == false:
+				velocity
 			is_attacking = true
 			$AnimatedSprite.play("fireshot")
 			#create instance of fireball
@@ -202,6 +198,10 @@ func _physics_process(delta):
 			get_parent().add_child(fireballv)
 			#set position
 			fireballv.position = $Position2D.global_position
+			
+
+				
+
 			
 		if is_on_wall():
 			velocity.x = 0
