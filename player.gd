@@ -157,7 +157,7 @@ func _physics_process(delta):
 			if is_attacking == false:
 				on_ground = false
 				if velocity.y < 0 && maxjumper > jump_counter :
-					$AnimatedSprite.play("jump")
+					$AnimatedSprite.play("doublejump")
 				elif velocity.y < 0 && maxjumper <= jump_counter:
 						$AnimatedSprite.play("doublejump")
 
