@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://Dood/DoodIdle001.png" type="Texture" id=2]
@@ -23,12 +23,6 @@
 [ext_resource path="res://Dood/DoodJumpflip004.png" type="Texture" id=21]
 [ext_resource path="res://Dood/DoodFall001.png" type="Texture" id=22]
 [ext_resource path="res://Dood/DoodFall002.png" type="Texture" id=23]
-[ext_resource path="res://Dood/Dasher001.png" type="Texture" id=24]
-[ext_resource path="res://Dood/Dasher002.png" type="Texture" id=25]
-[ext_resource path="res://Dood/Dasher003.png" type="Texture" id=26]
-[ext_resource path="res://Dood/Dasher004.png" type="Texture" id=27]
-[ext_resource path="res://Dood/Dasher005.png" type="Texture" id=28]
-[ext_resource path="res://Dood/Dasher006.png" type="Texture" id=29]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -72,11 +66,6 @@ animations = [ {
 "loop": false,
 "name": "fall",
 "speed": 8.0
-}, {
-"frames": [ ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ) ],
-"loop": true,
-"name": "dash",
-"speed": 15.0
 } ]
 _sections_unfolded = [ "Resource" ]
 
@@ -99,8 +88,7 @@ _sections_unfolded = [ "Collision", "Material", "Transform", "Visibility", "Z In
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 
 frames = SubResource( 1 )
-animation = "dash"
-frame = 3
+animation = "idle"
 _sections_unfolded = [ "Material", "Pause", "Transform", "Visibility", "Z Index" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
@@ -111,12 +99,12 @@ _sections_unfolded = [ "Z Index" ]
 
 [node name="Position2D" type="Position2D" parent="." index="2"]
 
-position = Vector2( 4.4208, 1.2054 )
+position = Vector2( 6.21121, -0.0734558 )
 _sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
 
 [node name="Position2D2" type="Position2D" parent="." index="3"]
 
-position = Vector2( -14.0992, 1.20539 )
+position = Vector2( -20.8621, -0.949966 )
 _sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
 
 [node name="Camera2D" type="Camera2D" parent="." index="4"]
@@ -124,7 +112,7 @@ _sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
 anchor_mode = 1
 rotating = false
 current = true
-zoom = Vector2( 0.8, 0.8 )
+zoom = Vector2( 1, 1 )
 limit_left = 0
 limit_top = -180
 limit_right = 1890

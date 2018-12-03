@@ -78,15 +78,20 @@ func _physics_process(delta):
 #						ghostin = true
 #						$dash_timer.start()
 					if Input.is_action_just_pressed("ui_dash") && dasher == true:
-						self.position.x += 60
+						if is_on_floor():
+							velocity.x = 0
+						$AnimatedSprite.play("fireshot")
+						is_attacking = true
+						self.position.x += 100
 						var dashv = dash.instance()
 						#fireball directions of fire
-						if sign($Position2D.position.x) == 1:
+						if sign($Position2D2.position.x) == -1:
 							dashv.set_dash_direction(1)
 						#add fireball to scene
 						get_parent().add_child(dashv)
 						#set position
-						dashv.position = $Position2D.global_position
+						dashv.position = $Position2D2.global_position
+						
 						
 					if sign($Position2D.position.x) == -1:
 						$Position2D.position.x *= -1

@@ -14,16 +14,16 @@ animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": false,
 "name": "dash",
-"speed": 15.0
+"speed": 20.0
 } ]
 _sections_unfolded = [ "Resource" ]
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
-radius = 6.08081
+extents = Vector2( 25.0872, 7.1657 )
 
-[node name="fireball-Area2D" type="Area2D"]
+[node name="dash-Area2D" type="Area2D"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -33,28 +33,27 @@ angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 
+position = Vector2( -0.0565605, -0.0565624 )
 frames = SubResource( 1 )
 animation = "dash"
-frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
-visible = false
-position = Vector2( 0.510466, -0.255234 )
+position = Vector2( 0.19253, -0.255234 )
 shape = SubResource( 2 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="." index="2"]
 
-visible = false
+position = Vector2( 0.0860759, 0.0391212 )
+scale = Vector2( 2.45116, 0.771582 )
 rect = Rect2( -10, -10, 20, 20 )
 
-[connection signal="body_entered" from="." to="." method="_on_fireballArea2D_body_entered"]
+[connection signal="body_entered" from="." to="." method="_on_dashArea2D_body_entered"]
+
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 
