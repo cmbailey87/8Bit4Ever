@@ -6,12 +6,12 @@ const speed = 60
 
 #how many pixels are convered duriung jump
 const jump_power = -250
-const double_jump_power = -300
+const double_jump_power = -250
 #rate of fall speed
 const gravity = 10
 
 #vari for dash controls
-var dash_speed = 200
+var dash_speed = 75
 var max_speed = 300
 var dasher = false
 
@@ -84,14 +84,14 @@ func _physics_process(delta):
 				#dash animation play
 				$AnimatedSprite.play("fireshot")
 				is_attacking = true
-				self.position.x += 100
+				self.position.x += dash_speed
 				var dashv = dash.instance()
 				#Dash direction normal or flipped
-				if sign($Position2D2.position.x) == 1:
-					dashv.set_dash_direction(1)
-							#add fireball to scene
+#				if sign($Position2D2.position.x) == 1:
+#					dashv.set_dash_direction(1)
+#				#add fireball to scene
 				get_parent().add_child(dashv)
-				#set position
+#				#set position
 				dashv.position = $Position2D2.global_position
 				
 
@@ -114,13 +114,14 @@ func _physics_process(delta):
 				#dash animation play
 				$AnimatedSprite.play("fireshot")
 				is_attacking = true
-				self.position.x += -100
+				self.position.x += -dash_speed
 				var dashv = dash.instance()
 				#Dash direction of execution...not placement..to flip animation
 				#plays dash animation behind sprite in direction of execution
-				if sign($Position2D2.position.x) == 1:
-					dashv.set_dash_direction(-1)
+#				if sign($Position2D2.position.x) == 1:
+#					dashv.set_dash_direction(-1)
 							#add fireball to scene
+				dashv.set_dash_direction(-1)
 				get_parent().add_child(dashv)
 				#set position
 				dashv.position = $Position2D2.global_position
