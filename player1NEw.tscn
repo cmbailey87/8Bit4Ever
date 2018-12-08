@@ -3,16 +3,16 @@
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://Dood/DoodIdle001.png" type="Texture" id=2]
 [ext_resource path="res://Dood/DoodIdle002.png" type="Texture" id=3]
-[ext_resource path="res://Dood/DoodJump001.png" type="Texture" id=4]
-[ext_resource path="res://Dood/DoodJump002.png" type="Texture" id=5]
-[ext_resource path="res://Dood/DoodRun001.png" type="Texture" id=6]
-[ext_resource path="res://Dood/DoodRun002.png" type="Texture" id=7]
-[ext_resource path="res://Dood/DoodRun003.png" type="Texture" id=8]
-[ext_resource path="res://Dood/DoodRun004.png" type="Texture" id=9]
-[ext_resource path="res://Dood/DoodPunch001.png" type="Texture" id=10]
-[ext_resource path="res://Dood/DoodPunch002.png" type="Texture" id=11]
-[ext_resource path="res://Dood/DoodPunch003.png" type="Texture" id=12]
-[ext_resource path="res://Dood/DoodPunch004.png" type="Texture" id=13]
+[ext_resource path="res://Dood/DoodRun001.png" type="Texture" id=4]
+[ext_resource path="res://Dood/DoodRun002.png" type="Texture" id=5]
+[ext_resource path="res://Dood/DoodRun003.png" type="Texture" id=6]
+[ext_resource path="res://Dood/DoodRun004.png" type="Texture" id=7]
+[ext_resource path="res://Dood/DoodPunch001.png" type="Texture" id=8]
+[ext_resource path="res://Dood/DoodPunch002.png" type="Texture" id=9]
+[ext_resource path="res://Dood/DoodPunch003.png" type="Texture" id=10]
+[ext_resource path="res://Dood/DoodPunch004.png" type="Texture" id=11]
+[ext_resource path="res://Dood/DoodJump001.png" type="Texture" id=12]
+[ext_resource path="res://Dood/DoodJump002.png" type="Texture" id=13]
 [ext_resource path="res://Dood/DoodFireballShot001.png" type="Texture" id=14]
 [ext_resource path="res://Dood/DoodFireballShot002.png" type="Texture" id=15]
 [ext_resource path="res://Dood/DoodFireballShot003.png" type="Texture" id=16]
@@ -32,25 +32,20 @@ animations = [ {
 "name": "idle",
 "speed": 3.0
 }, {
-"frames": [ ExtResource( 2 ), null, null, ExtResource( 2 ), null, null ],
-"loop": true,
-"name": "dead",
-"speed": 24.0
-}, {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
-"loop": false,
-"name": "jump",
-"speed": 8.0
-}, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "run",
 "speed": 18.0
 }, {
-"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
+"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
 "loop": true,
 "name": "punch",
 "speed": 12.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 13 ) ],
+"loop": false,
+"name": "jump",
+"speed": 8.0
 }, {
 "frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
 "loop": true,
@@ -60,7 +55,12 @@ animations = [ {
 "frames": [ ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ) ],
 "loop": true,
 "name": "flip",
-"speed": 15.0
+"speed": 20.0
+}, {
+"frames": [ ExtResource( 2 ), null, null, ExtResource( 2 ), null, null ],
+"loop": true,
+"name": "dead",
+"speed": 24.0
 }, {
 "frames": [ ExtResource( 22 ), ExtResource( 23 ) ],
 "loop": false,
@@ -74,7 +74,7 @@ _sections_unfolded = [ "Resource" ]
 custom_solver_bias = 0.0
 extents = Vector2( 4.17297, 7.61052 )
 
-[node name="player" type="KinematicBody2D"]
+[node name="player" type="KinematicBody2D" index="0"]
 
 position = Vector2( 152.203, 68.2834 )
 z_index = 1
@@ -88,7 +88,8 @@ _sections_unfolded = [ "Collision", "Material", "Transform", "Visibility", "Z In
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 
 frames = SubResource( 1 )
-animation = "idle"
+animation = "flip"
+frame = 3
 _sections_unfolded = [ "Material", "Pause", "Transform", "Visibility", "Z Index" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
