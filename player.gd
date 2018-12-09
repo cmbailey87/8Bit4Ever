@@ -82,7 +82,7 @@ func _physics_process(delta):
 				if is_on_floor():
 					velocity.x = 0
 				#dash animation play
-				$AnimatedSprite.play("fireshot")
+				$AnimatedSprite.play("dash")
 				is_attacking = true
 				self.position.x += dash_speed
 				var dashv = dash.instance()
@@ -112,7 +112,7 @@ func _physics_process(delta):
 				if is_on_floor():
 					velocity.x = 0
 				#dash animation play
-				$AnimatedSprite.play("fireshot")
+				$AnimatedSprite.play("dash")
 				is_attacking = true
 				self.position.x += -dash_speed
 				var dashv = dash.instance()
