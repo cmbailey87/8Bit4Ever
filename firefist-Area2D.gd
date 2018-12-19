@@ -49,5 +49,5 @@ func _on_firefistArea2D_body_entered(body):
 	pass
 
 
-func _on_AnimatedSprite_animation_finished():
-	queue_free()
+#func _on_AnimatedSprite_animation_finished():
+#	queue_free()

@@ -2,17 +2,18 @@ extends KinematicBody2D
 
 
 #constant cant be change, 60 pixels per second speed
-const speed = 60
+var speed = 60
 
 #how many pixels are convered duriung jump
-const jump_power = -250
+var jump_power = -250
 const double_jump_power = -250
 #rate of fall speed
-const gravity = 10
+var gravity = 10
 
 #vari for dash controls
 var dash_speed = 75
 var dasher = false
+var firefistignited = false
 
 var jump_counter = 0
 var maxjumper = 1
@@ -26,6 +27,7 @@ const FLOOR = Vector2(0,-1)
 const fireball = preload("res://fireball-Area2D.tscn")
 const fireballsmall = preload("res://fireballsmall-Area2D.tscn")
 const dash = preload("res://dash-Area2D.tscn")
+const firefist = preload("res://firefist-Area2D.tscn")
 
 #boolean flag for being on the ground
 var on_ground = false
@@ -149,13 +151,13 @@ func _physics_process(delta):
 						ghostin = true
 						jump_counter += 1
 						double_jumping = true
-						$AnimatedSprite.play("flip")
+#						$AnimatedSprite.play("flip")
 						
 
 
 		
 		
-		velocity.y += gravity
+		
 		
 		#tell if player is on the ground...
 		
@@ -167,6 +169,9 @@ func _physics_process(delta):
 			ghostin = false
 			jumping = false
 			double_jumping = false
+			speed = 60
+			gravity = 10
+
 		else: #hes in the air
 			if is_attacking == false:
 				on_ground = false
@@ -204,7 +209,10 @@ func _physics_process(delta):
 		 #DASH 
 		if Input.is_action_just_pressed("ui_dash"):
 				#stop player from moving duting animation dash
-				velocity.x = 0
+				dasher = true
+				speed = 0
+				gravity = 0
+				velocity.y = 0
 				#dash animation play
 				is_attacking = true
 				$AnimatedSprite.play("dash")
@@ -221,15 +229,38 @@ func _physics_process(delta):
 				get_parent().add_child(dashv)
 #				#set position
 				dashv.position = $Position2D2.global_position
+				$gravityTimer.start()
 			
+		#FIREFIST
+		
+		if Input.is_action_pressed("ui_firefist") && !firefistignited:
+			$AnimatedSprite.play("punch")
+			is_attacking = true
+			ghostin = true
+			jump_counter += 1
+			jump_power = 0
+#			firefistignited = true
+			speed = 15
+			gravity = 1
+			velocity.y = 0
+#			#create instance of fireball
+#			var firefistv = firefist.instance()
+#			#fireball directions of fire
+#			if sign($Position2D3.position.x) == 1:
+#				firefistv.set_firefist_direction(1)
+#			else:
+#				firefistv.set_firefist_direction(-1)
+#			#add fireball to scene
+#			get_parent().add_child(firefistv)
+#			#set position
+#			firefistv.position = $Position2D3.global_position
 
-				
-
+			
 			
 		if is_on_wall():
 			velocity.x = 0
 			
-		
+		velocity.y += gravity
 			
 			
 		#move and slide function allows the player to move about the level
@@ -276,3 +307,10 @@ func _on_AnimatedSprite_animation_finished():
 	is_attacking = false
 
 
+
+
+func _on_gravityTimer_timeout():
+	if dasher || firefistignited:
+		gravity += 10
+		speed = 60
+		dasher = false
