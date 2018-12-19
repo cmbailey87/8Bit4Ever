@@ -2,6 +2,7 @@ extends Area2D
 const speed = 100
 
 var velocity = Vector2()
+#1 = right -1 = left
 var direction = 1
 
 # class member variables go here, for example:
@@ -18,27 +19,35 @@ func _ready():
 #	# Update game logic here.
 #	pass
 
-func set_fireballsmall_direction(dir):
+func set_firefist_direction(dir):
 	direction = dir
 	if dir == -1:
 		$AnimatedSprite.flip_h = true
 		
 
 #delta calculates the player speed into this function
+#host fast the animation moves across the screen
+#if set to 0, the animation plays in one spot and stays there
+
 func _physics_process(delta):
-	velocity.x = speed * delta * direction
+	#animation does move
+	velocity.x = 0
 	translate(velocity)
-	$AnimatedSprite.play("shoot")
+	$AnimatedSprite.play("firefist")
+#	#animation moves behind players trail 
+#	velocity.x = speed * delta * direction
+#	translate(velocity)
+#	$AnimatedSprite.play("dash")
 
-func _on_VisibilityNotifier2D_screen_exited():
-	queue_free()
 
-func _on_fireballsmallArea2D_body_entered(body):
+func _on_firefistArea2D_body_entered(body):
 	#checks if enemy exist in body name
 	if "player" in body.name:
 		pass
-	else:
-		queue_free()
 	if "Enemy" in body.name:
 		body.dead()
-	
+	pass
+
+
+func _on_AnimatedSprite_animation_finished():
+	queue_free()
