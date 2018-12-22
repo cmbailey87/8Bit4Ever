@@ -14,12 +14,14 @@ var gravity = 10
 var dash_speed = 75
 var dasher = false
 var firefistignited = false
-
+var fireball = false
 var jump_counter = 0
 var maxjumper = 1
 var ghostin = false
 var double_jumping = false
 var jumping = false
+var falling = false
+var firefistanimation = false
 
 #zero negative 1 is top of box, 0 one is top of box
 const FLOOR = Vector2(0,-1)
@@ -65,13 +67,17 @@ func _physics_process(delta):
 		if Input.is_action_pressed("ui_right"):
 			if is_attacking == false || is_on_floor() == false:
 				velocity.x = speed
-				if is_attacking == false && double_jumping == false:
+				#double jumping equal false to cancel out run animation
+				if !is_attacking && !double_jumping && !firefistignited:
 					
 					$AnimatedSprite.play("run")
 					$AnimatedSprite.flip_h = false
 					#fireball position
 					if sign($Position2D.position.x) == -1:
 						$Position2D.position.x *= -1
+					#firefist position
+					if sign($Position2D3.position.x) == -1:
+						$Position2D3.position.x *= -1
 					#the position where the animation occurs..the 2dcurson
 					#dash animation
 					if sign($Position2D2.position.x) == 1:
@@ -96,6 +102,7 @@ func _physics_process(delta):
 		elif Input.is_action_pressed("ui_left"):
 			if is_attacking == false || is_on_floor() == false:
 				velocity.x = -speed
+				#double jumping equal false to cancel out run animation
 				if is_attacking == false && double_jumping == false:
 					
 					$AnimatedSprite.play("run")
@@ -103,6 +110,9 @@ func _physics_process(delta):
 					#fireball position
 					if sign($Position2D.position.x) == 1:
 						$Position2D.position.x *= -1
+					#firefist position
+					if sign($Position2D3.position.x) == 1:
+						$Position2D3.position.x *= -1
 					#dash animation
 					if sign($Position2D2.position.x) == -1:
 						$Position2D2.position.x *= -1
@@ -140,7 +150,9 @@ func _physics_process(delta):
 					velocity.y = jump_power
 					on_ground = false
 					jumping = true
+					ghostin = false
 					#jump_counter += 1
+					$gravityTimer.start()
 		
 		#DOUBLE JUMP
 		if Input.is_action_just_pressed("ui_accept"):
@@ -151,6 +163,7 @@ func _physics_process(delta):
 						ghostin = true
 						jump_counter += 1
 						double_jumping = true
+						$gravityTimer.start()
 #						$AnimatedSprite.play("flip")
 						
 
@@ -189,8 +202,12 @@ func _physics_process(delta):
 		#FIREBALLKEY
 		
 		if Input.is_action_just_pressed("ui_focus_next") && is_attacking == false:
+			fireball = true
 			if is_on_floor() || on_ground == false:
-				velocity.x = 0
+				gravity = 0
+				speed = 0
+				velocity.y = 0
+				falling = false
 			is_attacking = true
 			$AnimatedSprite.play("fireshot")
 			#create instance of fireball
@@ -204,6 +221,38 @@ func _physics_process(delta):
 			get_parent().add_child(fireballv)
 			#set position
 			fireballv.position = $Position2D.global_position
+			$gravityTimer.start()
+			
+			
+		#FIREFIST
+		
+		if Input.is_action_pressed("ui_firefist") && !firefistignited:
+			ghostin = true
+			firefistignited = true
+			jump_power = 0
+			speed = 10
+			gravity = 1
+			velocity.y = 0
+			$gravityTimer.start()
+			firefistanimation = true
+			is_attacking = true
+			$AnimatedSprite.play("punch")
+			
+		
+		if firefistanimation == true:
+#			#create instance of fireball
+			var firefistv = firefist.instance()
+			#fireball directions of fire
+			if sign($Position2D3.position.x) == 1:
+				firefistv.set_firefist_direction(1)
+			else:
+				firefistv.set_firefist_direction(-1)
+			#add fireball to scene
+			get_parent().add_child(firefistv)
+			#set position
+			firefistv.position = $Position2D3.global_position
+		if Input.is_action_just_released("ui_firefist"):
+			firefistanimation = false
 			
 			
 		 #DASH 
@@ -231,29 +280,7 @@ func _physics_process(delta):
 				dashv.position = $Position2D2.global_position
 				$gravityTimer.start()
 			
-		#FIREFIST
-		
-		if Input.is_action_pressed("ui_firefist") && !firefistignited:
-			$AnimatedSprite.play("punch")
-			is_attacking = true
-			ghostin = true
-			jump_counter += 1
-			jump_power = 0
-#			firefistignited = true
-			speed = 15
-			gravity = 1
-			velocity.y = 0
-#			#create instance of fireball
-#			var firefistv = firefist.instance()
-#			#fireball directions of fire
-#			if sign($Position2D3.position.x) == 1:
-#				firefistv.set_firefist_direction(1)
-#			else:
-#				firefistv.set_firefist_direction(-1)
-#			#add fireball to scene
-#			get_parent().add_child(firefistv)
-#			#set position
-#			firefistv.position = $Position2D3.global_position
+
 
 			
 			
@@ -308,9 +335,12 @@ func _on_AnimatedSprite_animation_finished():
 
 
 
-
 func _on_gravityTimer_timeout():
-	if dasher || firefistignited:
-		gravity += 10
+	if dasher || firefistignited || double_jumping || fireball:
+		#set custom attacj parameters back to normal
+		gravity = 10
 		speed = 60
 		dasher = false
+		firefistignited = false
+		jump_power = -250
+		ghostin = false

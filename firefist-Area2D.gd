@@ -2,7 +2,6 @@ extends Area2D
 const speed = 100
 
 var velocity = Vector2()
-#1 = right -1 = left
 var direction = 1
 
 # class member variables go here, for example:
@@ -26,18 +25,10 @@ func set_firefist_direction(dir):
 		
 
 #delta calculates the player speed into this function
-#host fast the animation moves across the screen
-#if set to 0, the animation plays in one spot and stays there
-
 func _physics_process(delta):
-	#animation does move
 	velocity.x = 0
 	translate(velocity)
 	$AnimatedSprite.play("firefist")
-#	#animation moves behind players trail 
-#	velocity.x = speed * delta * direction
-#	translate(velocity)
-#	$AnimatedSprite.play("dash")
 
 
 func _on_firefistArea2D_body_entered(body):
@@ -46,8 +37,9 @@ func _on_firefistArea2D_body_entered(body):
 		pass
 	if "Enemy" in body.name:
 		body.dead()
-	pass
+	
 
 
-#func _on_AnimatedSprite_animation_finished():
-#	queue_free()
+
+func _on_AnimatedSprite_animation_finished():
+	queue_free()

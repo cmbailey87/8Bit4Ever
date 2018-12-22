@@ -41,6 +41,8 @@ func _ready():
 	
 func dead():
 	hp -= 1 
+	velocity = Vector2(0,0)
+	
 	if hp <= 0:
 		is_dead = true
 		velocity = Vector2(0,0)
