@@ -3,27 +3,27 @@
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://Dood/DoodIdle001.png" type="Texture" id=2]
 [ext_resource path="res://Dood/DoodIdle002.png" type="Texture" id=3]
-[ext_resource path="res://Dood/DoodFall001.png" type="Texture" id=4]
-[ext_resource path="res://Dood/DoodFall002.png" type="Texture" id=5]
-[ext_resource path="res://Dood/DoodFireballShot001.png" type="Texture" id=6]
-[ext_resource path="res://Dood/DoodFireballShot002.png" type="Texture" id=7]
-[ext_resource path="res://Dood/DoodFireballShot003.png" type="Texture" id=8]
-[ext_resource path="res://Dood/DoodFireballShot004.png" type="Texture" id=9]
-[ext_resource path="res://Dood/DoodRun001.png" type="Texture" id=10]
-[ext_resource path="res://Dood/DoodRun002.png" type="Texture" id=11]
-[ext_resource path="res://Dood/DoodRun003.png" type="Texture" id=12]
-[ext_resource path="res://Dood/DoodRun004.png" type="Texture" id=13]
-[ext_resource path="res://Dood/DoodJump001.png" type="Texture" id=14]
-[ext_resource path="res://Dood/DoodJump002.png" type="Texture" id=15]
-[ext_resource path="res://Dood/DoodJumpflip001.png" type="Texture" id=16]
-[ext_resource path="res://Dood/DoodJumpflip002.png" type="Texture" id=17]
-[ext_resource path="res://Dood/DoodJumpflip003.png" type="Texture" id=18]
-[ext_resource path="res://Dood/DoodJumpflip004.png" type="Texture" id=19]
-[ext_resource path="res://Dood/DoodPunch001.png" type="Texture" id=20]
-[ext_resource path="res://Dood/DoodPunch002.png" type="Texture" id=21]
-[ext_resource path="res://Dood/DoodPunch003.png" type="Texture" id=22]
-[ext_resource path="res://Dood/DoodPunch004.png" type="Texture" id=23]
-[ext_resource path="res://Dood/DoodDash001.png" type="Texture" id=24]
+[ext_resource path="res://Dood/DoodDash001.png" type="Texture" id=4]
+[ext_resource path="res://Dood/DoodJumpflip001.png" type="Texture" id=5]
+[ext_resource path="res://Dood/DoodJumpflip002.png" type="Texture" id=6]
+[ext_resource path="res://Dood/DoodJumpflip003.png" type="Texture" id=7]
+[ext_resource path="res://Dood/DoodJumpflip004.png" type="Texture" id=8]
+[ext_resource path="res://Dood/DoodPunch001.png" type="Texture" id=9]
+[ext_resource path="res://Dood/DoodPunch002.png" type="Texture" id=10]
+[ext_resource path="res://Dood/DoodPunch003.png" type="Texture" id=11]
+[ext_resource path="res://Dood/DoodPunch004.png" type="Texture" id=12]
+[ext_resource path="res://Dood/DoodFall001.png" type="Texture" id=13]
+[ext_resource path="res://Dood/DoodFall002.png" type="Texture" id=14]
+[ext_resource path="res://Dood/DoodFireballShot001.png" type="Texture" id=15]
+[ext_resource path="res://Dood/DoodFireballShot002.png" type="Texture" id=16]
+[ext_resource path="res://Dood/DoodFireballShot003.png" type="Texture" id=17]
+[ext_resource path="res://Dood/DoodFireballShot004.png" type="Texture" id=18]
+[ext_resource path="res://Dood/DoodRun001.png" type="Texture" id=19]
+[ext_resource path="res://Dood/DoodRun002.png" type="Texture" id=20]
+[ext_resource path="res://Dood/DoodRun003.png" type="Texture" id=21]
+[ext_resource path="res://Dood/DoodRun004.png" type="Texture" id=22]
+[ext_resource path="res://Dood/DoodJump001.png" type="Texture" id=23]
+[ext_resource path="res://Dood/DoodJump002.png" type="Texture" id=24]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -33,34 +33,9 @@ animations = [ {
 "name": "idle",
 "speed": 3.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
-"loop": false,
-"name": "fall",
-"speed": 8.0
-}, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 4 ), ExtResource( 4 ), ExtResource( 4 ) ],
 "loop": true,
-"name": "fireshot",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "run",
-"speed": 18.0
-}, {
-"frames": [ ExtResource( 14 ), ExtResource( 15 ) ],
-"loop": false,
-"name": "jump",
-"speed": 8.0
-}, {
-"frames": [ ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ) ],
-"loop": true,
-"name": "flip",
-"speed": 20.0
-}, {
-"frames": [ ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ) ],
-"loop": true,
-"name": "punch",
+"name": "dash",
 "speed": 12.0
 }, {
 "frames": [ ExtResource( 2 ), null, null, ExtResource( 2 ), null, null ],
@@ -68,10 +43,35 @@ animations = [ {
 "name": "dead",
 "speed": 24.0
 }, {
-"frames": [ ExtResource( 24 ), ExtResource( 24 ), ExtResource( 24 ), ExtResource( 24 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": true,
-"name": "dash",
+"name": "flip",
+"speed": 20.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "punch",
 "speed": 12.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 14 ) ],
+"loop": false,
+"name": "fall",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ) ],
+"loop": true,
+"name": "fireshot",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ) ],
+"loop": true,
+"name": "run",
+"speed": 18.0
+}, {
+"frames": [ ExtResource( 23 ), ExtResource( 24 ) ],
+"loop": false,
+"name": "jump",
+"speed": 8.0
 } ]
 _sections_unfolded = [ "Resource" ]
 
@@ -80,7 +80,7 @@ _sections_unfolded = [ "Resource" ]
 custom_solver_bias = 0.0
 extents = Vector2( 4.17297, 7.61052 )
 
-[node name="player" type="KinematicBody2D" index="0"]
+[node name="player" type="KinematicBody2D"]
 
 position = Vector2( 152.203, 68.2834 )
 z_index = 1
@@ -115,7 +115,7 @@ _sections_unfolded = [ "Material", "Pause", "Transform", "Visibility", "Z Index"
 
 [node name="Position2D3" type="Position2D" parent="." index="4"]
 
-position = Vector2( 16.8413, -0.104668 )
+position = Vector2( 16.6319, -0.104675 )
 _sections_unfolded = [ "Material", "Pause", "Transform", "Visibility", "Z Index" ]
 
 [node name="Camera2D" type="Camera2D" parent="." index="5"]
@@ -123,7 +123,7 @@ _sections_unfolded = [ "Material", "Pause", "Transform", "Visibility", "Z Index"
 anchor_mode = 1
 rotating = false
 current = true
-zoom = Vector2( 1, 1 )
+zoom = Vector2( 0.95, 0.95 )
 limit_left = 0
 limit_top = -180
 limit_right = 1890

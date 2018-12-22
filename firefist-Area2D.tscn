@@ -1,26 +1,26 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://firefist-Area2D.gd" type="Script" id=1]
 [ext_resource path="res://Dood/Firefist001.png" type="Texture" id=2]
 [ext_resource path="res://Dood/Firefist002.png" type="Texture" id=3]
 [ext_resource path="res://Dood/Firefist003.png" type="Texture" id=4]
-[ext_resource path="res://Dood/Firefist004.png" type="Texture" id=5]
 
 [sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 4 ), ExtResource( 4 ), ExtResource( 5 ) ],
-"loop": true,
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 3 ) ],
+"loop": false,
 "name": "firefist",
-"speed": 20.0
+"speed": 11.0
 } ]
+_sections_unfolded = [ "Resource" ]
 
 [sub_resource type="CircleShape2D" id=2]
 
 custom_solver_bias = 0.0
 radius = 10.0
 
-[node name="firefist-Area2D" type="Area2D"]
+[node name="firefist-Area2D" type="Area2D" index="0"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )

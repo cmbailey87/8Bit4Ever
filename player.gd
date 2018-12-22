@@ -239,7 +239,7 @@ func _physics_process(delta):
 			$AnimatedSprite.play("punch")
 			
 		
-		if firefistanimation == true:
+#		if firefistanimation == true:
 #			#create instance of fireball
 			var firefistv = firefist.instance()
 			#fireball directions of fire
@@ -251,8 +251,10 @@ func _physics_process(delta):
 			get_parent().add_child(firefistv)
 			#set position
 			firefistv.position = $Position2D3.global_position
-		if Input.is_action_just_released("ui_firefist"):
-			firefistanimation = false
+			
+#		if Input.is_action_just_released("ui_firefist"):
+#			firefistanimation = false
+			
 			
 			
 		 #DASH 
