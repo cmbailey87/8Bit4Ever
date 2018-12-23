@@ -1,6 +1,6 @@
 extends Area2D
 const speed = 100
-
+var attack = 0
 var velocity = Vector2()
 var direction = 1
 
@@ -23,12 +23,22 @@ func set_firefist_direction(dir):
 	if dir == -1:
 		$AnimatedSprite.flip_h = true
 		
+func set_attack(attacknum):
+	attack = attacknum
+	
+	if attacknum == 1:
+		attack = 1
+	else:
+		attack = 0
 
 #delta calculates the player speed into this function
 func _physics_process(delta):
 	velocity.x = 0
 	translate(velocity)
-	$AnimatedSprite.play("firefist")
+	if attack == 0:
+		$AnimatedSprite.play("firefist1")
+	if attack == 1:
+		$AnimatedSprite.play("firefist2")
 
 
 func _on_firefistArea2D_body_entered(body):

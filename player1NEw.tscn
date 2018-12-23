@@ -1,29 +1,27 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://Dood/DoodIdle001.png" type="Texture" id=2]
 [ext_resource path="res://Dood/DoodIdle002.png" type="Texture" id=3]
-[ext_resource path="res://Dood/DoodDash001.png" type="Texture" id=4]
-[ext_resource path="res://Dood/DoodJumpflip001.png" type="Texture" id=5]
-[ext_resource path="res://Dood/DoodJumpflip002.png" type="Texture" id=6]
-[ext_resource path="res://Dood/DoodJumpflip003.png" type="Texture" id=7]
-[ext_resource path="res://Dood/DoodJumpflip004.png" type="Texture" id=8]
-[ext_resource path="res://Dood/DoodPunch001.png" type="Texture" id=9]
-[ext_resource path="res://Dood/DoodPunch002.png" type="Texture" id=10]
-[ext_resource path="res://Dood/DoodPunch003.png" type="Texture" id=11]
-[ext_resource path="res://Dood/DoodPunch004.png" type="Texture" id=12]
-[ext_resource path="res://Dood/DoodFall001.png" type="Texture" id=13]
-[ext_resource path="res://Dood/DoodFall002.png" type="Texture" id=14]
-[ext_resource path="res://Dood/DoodFireballShot001.png" type="Texture" id=15]
-[ext_resource path="res://Dood/DoodFireballShot002.png" type="Texture" id=16]
-[ext_resource path="res://Dood/DoodFireballShot003.png" type="Texture" id=17]
-[ext_resource path="res://Dood/DoodFireballShot004.png" type="Texture" id=18]
-[ext_resource path="res://Dood/DoodRun001.png" type="Texture" id=19]
-[ext_resource path="res://Dood/DoodRun002.png" type="Texture" id=20]
-[ext_resource path="res://Dood/DoodRun003.png" type="Texture" id=21]
-[ext_resource path="res://Dood/DoodRun004.png" type="Texture" id=22]
-[ext_resource path="res://Dood/DoodJump001.png" type="Texture" id=23]
-[ext_resource path="res://Dood/DoodJump002.png" type="Texture" id=24]
+[ext_resource path="res://Dood/DoodPunch001.png" type="Texture" id=4]
+[ext_resource path="res://Dood/DoodPunch003.png" type="Texture" id=5]
+[ext_resource path="res://Dood/DoodFall001.png" type="Texture" id=6]
+[ext_resource path="res://Dood/DoodFall002.png" type="Texture" id=7]
+[ext_resource path="res://Dood/DoodFireballShot001.png" type="Texture" id=8]
+[ext_resource path="res://Dood/DoodFireballShot002.png" type="Texture" id=9]
+[ext_resource path="res://Dood/DoodFireballShot003.png" type="Texture" id=10]
+[ext_resource path="res://Dood/DoodFireballShot004.png" type="Texture" id=11]
+[ext_resource path="res://Dood/DoodRun001.png" type="Texture" id=12]
+[ext_resource path="res://Dood/DoodRun002.png" type="Texture" id=13]
+[ext_resource path="res://Dood/DoodRun003.png" type="Texture" id=14]
+[ext_resource path="res://Dood/DoodRun004.png" type="Texture" id=15]
+[ext_resource path="res://Dood/DoodJump001.png" type="Texture" id=16]
+[ext_resource path="res://Dood/DoodJump002.png" type="Texture" id=17]
+[ext_resource path="res://Dood/DoodDash001.png" type="Texture" id=18]
+[ext_resource path="res://Dood/DoodJumpflip001.png" type="Texture" id=19]
+[ext_resource path="res://Dood/DoodJumpflip002.png" type="Texture" id=20]
+[ext_resource path="res://Dood/DoodJumpflip003.png" type="Texture" id=21]
+[ext_resource path="res://Dood/DoodJumpflip004.png" type="Texture" id=22]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -33,45 +31,50 @@ animations = [ {
 "name": "idle",
 "speed": 3.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 4 ), ExtResource( 4 ), ExtResource( 4 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 4 ), ExtResource( 4 ) ],
 "loop": true,
-"name": "dash",
+"name": "punch1",
+"speed": 6.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "punch2",
+"speed": 6.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": false,
+"name": "fall",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "fireshot",
 "speed": 12.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "run",
+"speed": 18.0
+}, {
+"frames": [ ExtResource( 16 ), ExtResource( 17 ) ],
+"loop": false,
+"name": "jump",
+"speed": 8.0
 }, {
 "frames": [ ExtResource( 2 ), null, null, ExtResource( 2 ), null, null ],
 "loop": true,
 "name": "dead",
 "speed": 24.0
 }, {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"frames": [ ExtResource( 18 ), ExtResource( 18 ), ExtResource( 18 ), ExtResource( 18 ) ],
 "loop": true,
-"name": "flip",
-"speed": 20.0
-}, {
-"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
-"loop": true,
-"name": "punch",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 13 ), ExtResource( 14 ) ],
-"loop": false,
-"name": "fall",
-"speed": 8.0
-}, {
-"frames": [ ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ) ],
-"loop": true,
-"name": "fireshot",
+"name": "dash",
 "speed": 12.0
 }, {
 "frames": [ ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ) ],
 "loop": true,
-"name": "run",
-"speed": 18.0
-}, {
-"frames": [ ExtResource( 23 ), ExtResource( 24 ) ],
-"loop": false,
-"name": "jump",
-"speed": 8.0
+"name": "flip",
+"speed": 20.0
 } ]
 _sections_unfolded = [ "Resource" ]
 
@@ -94,7 +97,7 @@ _sections_unfolded = [ "Collision", "Material", "Transform", "Visibility", "Z In
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 
 frames = SubResource( 1 )
-animation = "dash"
+animation = "idle"
 _sections_unfolded = [ "Material", "Pause", "Transform", "Visibility", "Z Index" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
@@ -115,7 +118,7 @@ _sections_unfolded = [ "Material", "Pause", "Transform", "Visibility", "Z Index"
 
 [node name="Position2D3" type="Position2D" parent="." index="4"]
 
-position = Vector2( 16.6319, -0.104675 )
+position = Vector2( 13.2463, -1.87442 )
 _sections_unfolded = [ "Material", "Pause", "Transform", "Visibility", "Z Index" ]
 
 [node name="Camera2D" type="Camera2D" parent="." index="5"]
@@ -162,6 +165,13 @@ autostart = true
 
 process_mode = 1
 wait_time = 0.25
+one_shot = false
+autostart = true
+
+[node name="PunchTimer" type="Timer" parent="." index="9"]
+
+process_mode = 1
+wait_time = 0.1
 one_shot = true
 autostart = false
 
@@ -172,5 +182,7 @@ autostart = false
 [connection signal="timeout" from="ghost_Timer2" to="." method="_on_ghost_Timer2_timeout"]
 
 [connection signal="timeout" from="gravityTimer" to="." method="_on_gravityTimer_timeout"]
+
+[connection signal="timeout" from="PunchTimer" to="." method="_on_PunchTimer_timeout"]
 
 
