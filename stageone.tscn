@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://ground tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Enemy1-KinematicBody2D.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://screenshake.gd" type="Script" id=5]
 [ext_resource path="res://forest platformer/big tree 04.png" type="Texture" id=6]
 [ext_resource path="res://changestage-Area2D.tscn" type="PackedScene" id=7]
+[ext_resource path="res://interface/Bars/BarsControl.tscn" type="PackedScene" id=8]
 
 [node name="stageone" type="Node2D" index="0"]
 
@@ -97,6 +98,7 @@ position = Vector2( 82.1649, 133.691 )
 
 [node name="screenshake" type="Node2D" parent="." index="10"]
 
+editor/display_folded = true
 script = ExtResource( 5 )
 
 [node name="Tween" type="Tween" parent="screenshake" index="0"]
@@ -110,6 +112,7 @@ playback/speed = 1.0
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." index="11"]
 
+editor/display_folded = true
 layer = -1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -141,6 +144,21 @@ _sections_unfolded = [ "Offset" ]
 
 position = Vector2( 1795.94, 116.242 )
 target_stage = "res://stagetwo.tscn"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="13"]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="Control" parent="CanvasLayer" index="0" instance=ExtResource( 8 )]
+
+margin_left = 3.0
+margin_top = 2.0
+margin_right = 43.0
+margin_bottom = 42.0
 
 [connection signal="tween_completed" from="screenshake/Tween" to="screenshake" method="_on_Tween_tween_completed"]
 

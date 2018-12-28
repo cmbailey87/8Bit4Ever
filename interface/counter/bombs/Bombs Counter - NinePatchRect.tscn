@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://interface/counter/Counter - NinePatchRect.tscn" type="PackedScene" id=1]
+
+[node name="Bombs Counter - NinePatchRect" instance=ExtResource( 1 )]
+
+
