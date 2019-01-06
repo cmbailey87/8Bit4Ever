@@ -24,7 +24,7 @@ func _physics_process(delta):
 	
 #startgame button
 func _on_TextureButton_pressed():
-	get_tree().change_scene("stageone.tscn")
+	get_tree().change_scene("res://Env/stage/stageone.tscn")
 
 #exit the game
 func _on_TextureButton2_pressed():

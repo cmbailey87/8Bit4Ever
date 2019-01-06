@@ -1,0 +1,74 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://enemies/Enemy1-KinematicBody2D.gd" type="Script" id=1]
+[ext_resource path="res://enemies/enemy1/dead_dead.png" type="Texture" id=2]
+[ext_resource path="res://enemies/enemy1/right_stand.png" type="Texture" id=3]
+[ext_resource path="res://enemies/enemy1/right_walk1.png" type="Texture" id=4]
+[ext_resource path="res://enemies/enemy1/right_walk2.png" type="Texture" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "dead",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "walk",
+"speed": 12.0
+} ]
+_sections_unfolded = [ "Resource" ]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 3.06921, 7.37761 )
+
+[node name="Enemy1-KinematicBody2D" type="KinematicBody2D"]
+
+position = Vector2( -0.0852585, 0 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+speed = 30
+hp = 1
+size = Vector2( 1, 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
+
+position = Vector2( 0.212767, -1 )
+scale = Vector2( 0.598404, 0.598404 )
+frames = SubResource( 1 )
+animation = "walk"
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+
+position = Vector2( 0.488455, -0.573711 )
+shape = SubResource( 2 )
+_sections_unfolded = [ "Material", "Pause", "Transform", "Z Index" ]
+
+[node name="RayCast2D" type="RayCast2D" parent="." index="2"]
+
+position = Vector2( 2.53695, -3.81976 )
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 0, 12 )
+collision_mask = 1
+_sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
+
+[node name="Timer" type="Timer" parent="." index="3"]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = true
+autostart = false
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+
