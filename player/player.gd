@@ -56,6 +56,8 @@ var is_dead = false
 #	# Called every frame. Delta is time since last frame.
 #	# Update game logic here.
 #	pass
+var right = true
+var left = true
 
 		
 		
@@ -65,7 +67,7 @@ func _physics_process(delta):
 	if is_dead == false:
 		
 		
-		if Input.is_action_pressed("ui_right"):
+		if Input.is_action_pressed("ui_right") && right:
 			if is_attacking == false || is_on_floor() == false:
 				velocity.x = speed
 				#double jumping equal false to cancel out run animation
@@ -100,7 +102,7 @@ func _physics_process(delta):
 ##				#set position
 #				dashv.position = $Position2D2.global_position
 
-		elif Input.is_action_pressed("ui_left"):
+		elif Input.is_action_pressed("ui_left") && left:
 			if is_attacking == false || is_on_floor() == false:
 				velocity.x = -speed
 				#double jumping equal false to cancel out run animation
@@ -313,14 +315,18 @@ func _physics_process(delta):
 				dashv.position = $Position2D2.global_position
 				$gravityTimer.start()
 				
-		# srpint dash
+		# sprint dash
 		if Input.is_action_just_pressed("sprint"):
 			is_attacking = true
-			speed = 700
+			speed = 4000
 			velocity.y = 0
+			velocity.x = speed
 			dasher = true
 			$AnimatedSprite.play("dasher")
-			gravity = 1
+			gravity = -1
+			
+			right = false
+			left = false
 			$dashtimer.start()
 			
 
@@ -389,14 +395,15 @@ func _on_gravityTimer_timeout():
 		firefistignited = false
 		jump_power = -250
 		ghostin = false
-		 
+		right = true
+		left = true
 
 
 
 
 
 func _on_dashtimer_timeout():
-	if dasher || firefistignited || double_jumping || fireball:
+	if dasher || fireball:
 		#set custom attacj parameters back to normal
 		gravity = 10
 		speed = 60
@@ -404,3 +411,5 @@ func _on_dashtimer_timeout():
 		firefistignited = false
 		jump_power = -250
 		ghostin = false
+		right = true
+		left = true

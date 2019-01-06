@@ -37,14 +37,9 @@ animations = [ {
 "name": "dead",
 "speed": 24.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 4 ), ExtResource( 4 ), ExtResource( 4 ), ExtResource( 4 ) ],
-"loop": true,
-"name": "dasher",
-"speed": 12.0
-}, {
 "frames": [ ExtResource( 4 ), ExtResource( 4 ), ExtResource( 4 ), ExtResource( 4 ) ],
 "loop": true,
-"name": "dash",
+"name": "dasher",
 "speed": 12.0
 }, {
 "frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
@@ -81,6 +76,11 @@ animations = [ {
 "loop": true,
 "name": "punch1",
 "speed": 6.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 4 ), ExtResource( 4 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "dash",
+"speed": 12.0
 } ]
 _sections_unfolded = [ "Resource" ]
 
@@ -186,7 +186,7 @@ autostart = false
 [node name="dashtimer" type="Timer" parent="." index="11"]
 
 process_mode = 1
-wait_time = 0.1
+wait_time = 0.18
 one_shot = false
 autostart = false
 

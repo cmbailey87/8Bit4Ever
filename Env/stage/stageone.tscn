@@ -143,7 +143,7 @@ _sections_unfolded = [ "Offset" ]
 [node name="changestage-Area2D" parent="." index="12" instance=ExtResource( 7 )]
 
 position = Vector2( 1795.94, 116.242 )
-target_stage = "res://stagetwo.tscn"
+target_stage = "res://Env/stage/stagetwo.tscn"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." index="13"]
 
