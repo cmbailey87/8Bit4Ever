@@ -25,37 +25,21 @@
 [ext_resource path="res://player/health/health.tscn" type="PackedScene" id=23]
 
 [sub_resource type="SpriteFrames" id=1]
-
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
 "loop": true,
 "name": "idle",
 "speed": 3.0
 }, {
-"frames": [ ExtResource( 2 ), null, null, ExtResource( 2 ), null, null ],
+"frames": [ ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ) ],
 "loop": true,
-"name": "dead",
-"speed": 24.0
-}, {
-"frames": [ ExtResource( 4 ), ExtResource( 4 ), ExtResource( 4 ), ExtResource( 4 ) ],
-"loop": true,
-"name": "dasher",
-"speed": 12.0
+"name": "flip",
+"speed": 20.0
 }, {
 "frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "fireshot",
 "speed": 12.0
-}, {
-"frames": [ ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ) ],
-"loop": true,
-"name": "punch2",
-"speed": 6.0
-}, {
-"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "run",
-"speed": 18.0
 }, {
 "frames": [ ExtResource( 14 ), ExtResource( 15 ) ],
 "loop": false,
@@ -67,10 +51,15 @@ animations = [ {
 "name": "fall",
 "speed": 8.0
 }, {
-"frames": [ ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ) ],
+"frames": [ ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ) ],
 "loop": true,
-"name": "flip",
-"speed": 20.0
+"name": "punch2",
+"speed": 6.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "run",
+"speed": 18.0
 }, {
 "frames": [ ExtResource( 22 ), ExtResource( 22 ), ExtResource( 22 ) ],
 "loop": true,
@@ -79,127 +68,83 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 4 ), ExtResource( 4 ), ExtResource( 4 ), ExtResource( 4 ) ],
 "loop": true,
+"name": "dasher",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 2 ), null, null, ExtResource( 2 ), null, null ],
+"loop": true,
+"name": "dead",
+"speed": 24.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 4 ), ExtResource( 4 ), ExtResource( 4 ) ],
+"loop": true,
 "name": "dash",
 "speed": 12.0
 } ]
-_sections_unfolded = [ "Resource" ]
 
 [sub_resource type="RectangleShape2D" id=2]
-
-custom_solver_bias = 0.0
 extents = Vector2( 4.17297, 7.61052 )
 
-[node name="player" type="KinematicBody2D" index="0"]
-
+[node name="player" type="KinematicBody2D"]
 position = Vector2( 152.203, 68.2834 )
 z_index = 1
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision", "Material", "Transform", "Visibility", "Z Index", "collision" ]
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
-
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "idle"
-_sections_unfolded = [ "Material", "Pause", "Transform", "Visibility", "Z Index" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
-
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.00854492, -0.0104103 )
 shape = SubResource( 2 )
-_sections_unfolded = [ "Z Index" ]
 
-[node name="Position2D" type="Position2D" parent="." index="2"]
-
+[node name="Position2D" type="Position2D" parent="."]
 position = Vector2( 6.21121, -0.0734558 )
-_sections_unfolded = [ "Material", "Pause", "Transform", "Visibility", "Z Index" ]
 
-[node name="Position2D2" type="Position2D" parent="." index="3"]
-
+[node name="Position2D2" type="Position2D" parent="."]
 position = Vector2( -23.8621, -0.949966 )
-_sections_unfolded = [ "Material", "Pause", "Transform", "Visibility", "Z Index" ]
 
-[node name="Position2D3" type="Position2D" parent="." index="4"]
-
+[node name="Position2D3" type="Position2D" parent="."]
 position = Vector2( 13.2463, -1.87442 )
-_sections_unfolded = [ "Material", "Pause", "Transform", "Visibility", "Z Index" ]
 
-[node name="Camera2D" type="Camera2D" parent="." index="5"]
-
-anchor_mode = 1
-rotating = false
+[node name="Camera2D" type="Camera2D" parent="."]
 current = true
 zoom = Vector2( 0.95, 0.95 )
 limit_left = 0
 limit_top = -180
 limit_right = 1890
 limit_bottom = 180
-limit_smoothed = false
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 smoothing_enabled = true
 smoothing_speed = 10.0
-offset_v = 0.0
-offset_h = 0.0
 drag_margin_left = 0.1
-drag_margin_top = 0.2
 drag_margin_right = 0.1
-drag_margin_bottom = 0.2
-editor_draw_screen = true
 editor_draw_limits = true
 editor_draw_drag_margin = true
-_sections_unfolded = [ "Drag Margin", "Editor", "Limit", "Material", "Offset", "Smoothing", "Transform", "Visibility", "Z Index" ]
 
-[node name="Timer" type="Timer" parent="." index="6"]
-
-process_mode = 1
-wait_time = 1.0
+[node name="Timer" type="Timer" parent="."]
 one_shot = true
-autostart = false
 
-[node name="ghost_Timer2" type="Timer" parent="." index="7"]
-
-process_mode = 1
+[node name="ghost_Timer2" type="Timer" parent="."]
 wait_time = 0.1
-one_shot = false
 autostart = true
 
-[node name="gravityTimer" type="Timer" parent="." index="8"]
-
-process_mode = 1
+[node name="gravityTimer" type="Timer" parent="."]
 wait_time = 0.25
-one_shot = false
 autostart = true
 
-[node name="PunchTimer" type="Timer" parent="." index="9"]
-
-process_mode = 1
+[node name="PunchTimer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
-autostart = false
 
-[node name="health" parent="." index="10" instance=ExtResource( 23 )]
+[node name="health" parent="." instance=ExtResource( 23 )]
 
-[node name="dashtimer" type="Timer" parent="." index="11"]
-
-process_mode = 1
+[node name="dashtimer" type="Timer" parent="."]
 wait_time = 0.18
-one_shot = false
-autostart = false
-
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
-
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
-
 [connection signal="timeout" from="ghost_Timer2" to="." method="_on_ghost_Timer2_timeout"]
-
 [connection signal="timeout" from="gravityTimer" to="." method="_on_gravityTimer_timeout"]
-
 [connection signal="timeout" from="PunchTimer" to="." method="_on_PunchTimer_timeout"]
-
 [connection signal="timeout" from="dashtimer" to="." method="_on_dashtimer_timeout"]
-
-

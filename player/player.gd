@@ -15,7 +15,7 @@ var followup1 = false
 var dash_speed = 75
 var dasher = false
 var firefistignited = false
-var fireball = false
+#var fireball = false
 var jump_counter = 0
 var maxjumper = 1
 var ghostin = false
@@ -205,7 +205,7 @@ func _physics_process(delta):
 		#FIREBALLKEY
 		
 		if Input.is_action_just_pressed("ui_focus_next") && is_attacking == false:
-			fireball = true
+			#fireball = true
 			if is_on_floor() || on_ground == false:
 				gravity = 1
 				speed = 0
